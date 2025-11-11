@@ -1,10 +1,14 @@
 /** @type { import('@storybook/react-vite').Preview } */
+
+import '../src/styles/base.css';
+import '../src/styles/normalize.css';
+
 const preview = {
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
 

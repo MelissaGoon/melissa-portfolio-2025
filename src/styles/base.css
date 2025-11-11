@@ -1,16 +1,42 @@
 /*## Base ##*/
-:root {}
+:root {
+    --white: #fff;
+    --black: #101010;
+
+    /* Dark Mode */
+    --dark-mode-gradient: linear-gradient(180deg, #010E3C 0%, #3C126D 100%);
+    --dark-mode-bg: #000B32;
+    --dark-mode-purple: #4C30A1;
+    --dark-mode-yellow: #E9FF5C;
+
+    /* Light Mode */
+    --light-mode-pink: #FEA6EF;
+    --light-mode-blue: #ABBDFF;
+    --light-mode-gradient: linear-gradient(180deg, #AABDFF 0%, #FEA6EF 100%);
+
+}
 
 html {
     scrollbar-width: thin;
 }
 
 
-body {}
+body {
+    font-family: "Bai Jamjuree", sans-serif;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.dark body {
+    color: var(--white);
+    background-color: var(--dark-mode-purple);
+}
 
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {}
+h6 {
+    font-family: "Pirata One", system-ui;
+}
