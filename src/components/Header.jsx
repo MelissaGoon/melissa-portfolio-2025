@@ -1,9 +1,17 @@
 import { NavLink } from "react-router-dom"
 import styles from '../styles/modules/header.module.css';
-import { useState } from "react";
+import { useState, useRef } from "react";
+import ToggleThemeBtn from "./ToggleThemeBtn";
+import { useIsMobile } from "../utilities/IsMobile";
+import { useClickOutside } from "../utilities/ClickOutside";
 
 const Header = () => {
     const [showNav, setShowNav] = useState(false);
+    const isMobile = useIsMobile();
+    const wrapperRef = useRef("nav");
+    useClickOutside(wrapperRef, () => {
+        setShowNav(false);
+    });
 
     const handleShowNav = () => {
         setShowNav(!showNav);
@@ -21,11 +29,13 @@ const Header = () => {
                 </NavLink>
 
 
-                <div className={styles.menu_right}>
-                    <button onClick={handleShowNav}>
+                <div className={styles.menu_right} ref={wrapperRef}>
+                    {!showNav && <button onClick={handleShowNav} aria-controls="nav-menu" aria-expanded={showNav}>
+                        <span className="screen-reader-text">Show Navigation</span>
+                    </button>}
 
-                    </button>
-                    <ul id="nav-menu" className={!showNav && `${styles.hidden}`}>
+                    <ul id="nav-menu" className={showNav ? undefined : `${styles.hidden}`} hidden={!showNav}>
+                        {isMobile && <li><NavLink to='/'>Home</NavLink></li>}
                         <li><NavLink to='/about'>About</NavLink></li>
                         <li><NavLink to='/projects'>Projects</NavLink></li>
                         <li><a href="#footer">Contact Me</a></li>
@@ -35,7 +45,7 @@ const Header = () => {
             </nav>
 
             <div className={styles.toggle_menu}>
-
+                <ToggleThemeBtn />
             </div>
         </header>
     )

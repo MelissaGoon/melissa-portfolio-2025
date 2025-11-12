@@ -27,10 +27,11 @@ body {
     background-color: var(--white);
 }
 
-.dark body {
+[data-theme='dark'] body {
     color: var(--white);
-    background-color: var(--dark-mode-purple);
+    background-color: var(--dark-mode-bg);
 }
+
 
 h1,
 h2,
@@ -39,4 +40,13 @@ h4,
 h5,
 h6 {
     font-family: "Pirata One", system-ui;
+}
+
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] h5,
+[data-theme='dark'] h6 {
+    color: var(--dark-mode-yellow);
 }
