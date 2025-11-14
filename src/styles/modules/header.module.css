@@ -2,7 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0.5rem;
+    padding: var(--mobile-margin);
+    position: fixed;
+    width: 100vw;
+    z-index: 999;
     --background-color: var(--light-mode-blue);
     --alt-color: var(--light-mode-pink);
     --text-color: var(--black);
@@ -17,7 +20,6 @@
 .header nav {
     display: flex;
     align-items: center;
-    margin: 0.5rem;
 }
 
 /* Logo Button and Theme Button */
@@ -99,6 +101,8 @@
     text-decoration: none;
     color: var(--black);
 }
+
+
 
 .menu_right {
     display: flex;
@@ -193,7 +197,7 @@
 /* Tablet Styles */
 @media (min-width:27em) {
     .header {
-        margin: 1rem;
+        padding: 1rem;
     }
 }
 
@@ -229,10 +233,11 @@
     }
 
     .menu_right button svg {
-        animation: slow-spin 15s linear infinite;
+        animation: spin 15s linear infinite;
     }
 
-    @keyframes slow-spin {
+
+    @keyframes spin {
         from {
             transform: rotate(0deg);
         }

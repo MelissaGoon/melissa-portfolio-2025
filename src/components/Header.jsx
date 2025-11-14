@@ -44,7 +44,7 @@ const Header = () => {
                     <ul id="nav-menu" className={!showNav && isMobile ? `${styles.hidden}` : undefined} hidden={!showNav && isMobile}>
                         <li><NavLink to='/'>Home</NavLink></li>
                         <li><NavLink to='/about'>About</NavLink></li>
-                        <li><NavLink to='/projects'>Projects</NavLink></li>
+                        <li><NavLink to='/projects' >Projects</NavLink></li>
 
                     </ul>
                 </div>

@@ -4,7 +4,7 @@
     --black: #101010;
 
     /* Dark Mode */
-    --dark-mode-gradient: linear-gradient(180deg, #010E3C 0%, #3C126D 100%);
+    --dark-mode-gradient: linear-gradient(180deg, #000B32 0%, #4C30A1 80%);
     --dark-mode-bg: #000B32;
     --dark-mode-purple: #4C30A1;
     --dark-mode-yellow: #E9FF5C;
@@ -12,8 +12,10 @@
     /* Light Mode */
     --light-mode-pink: #FEA6EF;
     --light-mode-blue: #ABBDFF;
-    --light-mode-gradient: linear-gradient(180deg, #AABDFF 0%, #FEA6EF 100%);
+    --light-mode-gradient: linear-gradient(180deg, #AABDFF 0%, #FEA6EF 80%);
 
+    /* General */
+    --mobile-margin: 0.5rem;
 }
 
 html {
@@ -49,4 +51,99 @@ h6 {
 [data-theme='dark'] h5,
 [data-theme='dark'] h6 {
     color: var(--dark-mode-yellow);
+}
+
+/* Buttons */
+.button-link {
+    border: 1.5px solid var(--black);
+    text-decoration: none;
+    border-radius: 500px;
+    width: fit-content;
+    color: var(--black);
+    padding: 0.5rem 1rem;
+}
+
+.button-link:focus,
+.button-link:active {
+    font-weight: 600;
+    box-shadow: 0px 5px 15px 0px rgba(255, 255, 255, 0.2), 0px -5px 15px 0px rgba(255, 255, 255, 0.2);
+}
+
+.button-link.plain {
+    background-color: var(--white);
+}
+
+.button-link.plain:hover {
+    background-color: var(--light-mode-blue);
+}
+
+
+.button-link.color {
+    background-color: var(--light-mode-pink);
+}
+
+.button-link.color:hover {
+    background-color: var(--white);
+}
+
+
+[data-theme='dark'] .button-link.plain {
+    background-color: var(--dark-mode-purple);
+}
+
+[data-theme='dark'] .button-link.color {
+    background-color: var(--dark-mode-yellow);
+}
+
+[data-theme='dark'] .button-link.plain:hover {
+    background-color: var(--dark-mode-yellow);
+}
+
+[data-theme='dark'] .button-link.color:hover {
+    background-color: var(--white);
+}
+
+/* Github Link */
+.github-link:focus path,
+.github-link:active path {
+    stroke-width: 2px;
+}
+
+.github-link:focus svg,
+.github-link:active svg {
+    filter:
+        drop-shadow(0px 5px 15px rgba(255, 255, 255, 0.2)) drop-shadow(0px -5px 15px rgba(255, 255, 255, 0.2));
+
+}
+
+.github-link.plain path {
+    fill: var(--white);
+}
+
+.github-link.plain:hover path {
+    fill: var(--light-mode-blue);
+}
+
+.github-link.color path {
+    fill: var(--light-mode-pink);
+}
+
+.github-link.color:hover path {
+    fill: var(--white);
+}
+
+[data-theme='dark'] .github-link.plain path {
+    fill: var(--dark-mode-purple);
+}
+
+[data-theme='dark'] .github-link.plain:hover path {
+    fill: var(--dark-mode-yellow);
+}
+
+[data-theme='dark'] .github-link.color path {
+    fill: var(--dark-mode-yellow);
+}
+
+[data-theme='dark'] .github-link.color:hover path {
+    fill: var(--white);
 }

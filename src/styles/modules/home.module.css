@@ -1,0 +1,95 @@
+.main {
+    --background: var(--white);
+}
+
+[data-theme='dark'] .main {
+    --background: var(--dark-mode-bg);
+}
+
+.hero {
+    height: 100vh;
+    background: var(--light-mode-gradient);
+    padding: var(--mobile-margin);
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+[data-theme='dark'] .hero {
+    background: var(--dark-mode-gradient);
+}
+
+.hero::after {
+    /* Adapted from : https://codepen.io/ongtiffany/pen/rOwryp */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    content: " ";
+    background:
+        radial-gradient(circle at 50%, var(--background) 45%, rgba(255, 255, 255, 0) 46%, rgba(255, 255, 255, 0) 50%);
+    background-size: 3rem 6rem;
+    height: 3rem;
+    background-repeat: repeat-x;
+}
+
+.hero * {
+    margin: 0;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    max-width: 12.5rem;
+    position: relative;
+    line-height: 3.5rem;
+}
+
+[data-theme='dark'] .hero h1 {
+    color: var(--white);
+}
+
+.hero h1::after {
+    content: '';
+    background-image: url('/assets/star-asset-4pt-white.svg');
+    position: absolute;
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    bottom: 5px;
+}
+
+[data-theme='dark'] .hero h1::after {
+    background-image: url('/assets/star-asset-4pt-yellow.svg');
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.hero_links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem
+}
+
+/* Animations */
+@media (prefers-reduced-motion: no-preference) {
+    .hero h1:hover::after {
+        animation: spin 2s;
+    }
+
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+
+    }
+}
