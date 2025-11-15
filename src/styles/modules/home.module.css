@@ -6,20 +6,32 @@
     --background: var(--dark-mode-bg);
 }
 
+/* Hero */
 .hero {
     height: 100vh;
-    background: var(--light-mode-gradient);
-    padding: var(--mobile-margin);
-    padding-bottom: 2rem;
+    background: url('/assets/light-hero.png'), var(--light-mode-gradient);
+    background-size: cover;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    gap: 1rem;
+    position: relative;
 }
 
 [data-theme='dark'] .hero {
-    background: var(--dark-mode-gradient);
+    background: url('/assets/dark-hero.png'), var(--dark-mode-gradient);
+    background-size: cover;
 }
+
+.hero_content {
+    max-width: var(--desktop-max-w);
+
+    height: 100%;
+    padding: 15vh var(--mobile-margin);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 0.75rem;
+}
+
 
 .hero::after {
     /* Adapted from : https://codepen.io/ongtiffany/pen/rOwryp */
@@ -75,10 +87,98 @@
     gap: 0.5rem
 }
 
+.down_arrow {
+    background: transparent;
+    border: none;
+    width: 80px;
+    margin: 1rem auto;
+    cursor: pointer;
+}
+
+.down_arrow svg {
+    width: 75px;
+}
+
+.down_arrow:focus path,
+.down_arrow:active path {
+    stroke-width: 1.5px;
+}
+
+.down_arrow:focus path,
+.down_arrow:active path {
+    stroke: var(--black);
+}
+
+[data-theme='dark'] .down_arrow:focus path,
+[data-theme='dark'] .down_arrow:active path {
+    stroke: var(--white);
+}
+
+[data-theme='dark'] .down_arrow path {
+    fill: var(--dark-mode-yellow);
+}
+
+@media (min-width: 45em) {
+    .hero {
+        height: 80vh;
+    }
+
+    .hero_content {
+        padding: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 8rem;
+        line-height: 7rem;
+        max-width: 500px;
+    }
+
+    .hero h1::after {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+    }
+
+    .hero .title {
+        font-size: 1.5rem;
+    }
+}
+
 /* Animations */
 @media (prefers-reduced-motion: no-preference) {
     .hero h1:hover::after {
         animation: spin 2s;
+    }
+
+    .down_arrow svg {
+        animation: bob 2s infinite ease-in-out;
+    }
+
+    @keyframes bob {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(7px);
+        }
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+
     }
 
 
