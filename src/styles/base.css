@@ -16,6 +16,7 @@
 
     /* General */
     --mobile-margin: 0.5rem;
+    --mobile-vertical-space: 1.5rem;
     --desktop-max-w: 75rem;
 }
 
