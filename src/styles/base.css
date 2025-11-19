@@ -86,6 +86,7 @@ h6 {
     height: 1.5px;
     background-color: var(--light-mode-blue);
     margin: 0 auto;
+    max-width: var(--desktop-max-w);
 }
 
 [data-theme='dark'] .divider {

@@ -142,7 +142,7 @@ const HomePage = () => {
 
             <section className={styles.featured_projects}>
                 <div className={styles.featured_heading}><h2>Featured Projects</h2>
-                    <ButtonLink color="color" label="See More →" isInternal={true} link='/projects' />
+                    <ButtonLink color="color" label="See More →" isInternal={true} link='/projects' style={{ margin: 0 }} />
                 </div>
                 <div className={styles.project_container}>
 
@@ -165,7 +165,7 @@ const HomePage = () => {
                                         <ul>
                                             {tech.map((t) => (<li key={t.id} className="tech-chip">{t.name}</li>))}
                                         </ul>
-                                        <p className={styles.proj_roles}><strong>{roles_string}</strong> </p>
+                                        <p ><strong>{roles_string}</strong> </p>
                                         <p className={styles.proj_tagline}>{project.acf.tagline}</p>
                                         <ButtonLink color="plain" label="✦ View Project ✦" isInternal={true} link={`/projects/${project.id}`} />
 
