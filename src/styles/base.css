@@ -19,6 +19,9 @@
     --mobile-vertical-space: 1.5rem;
     --desktop-max-w: 75rem;
     --desktop-vertical-space: 3rem;
+    --xl-text: clamp(2.5rem, 12vw, 5rem);
+    --lg-text: clamp(2.5rem, 10vw, 4rem);
+    --rounded-border: 20px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -54,7 +57,7 @@ body {
 
 @media (min-width: 45em) {
     p {
-        font-size: 1.2rem;
+        font-size: 1.125rem;
         line-height: 1.75rem;
     }
 }
@@ -77,12 +80,26 @@ h6 {
     color: var(--dark-mode-yellow);
 }
 
+/* Divider */
+.divider {
+    width: 90%;
+    height: 1.5px;
+    background-color: var(--light-mode-blue);
+    margin: 0 auto;
+}
+
+[data-theme='dark'] .divider {
+    background-color: var(--dark-mode-purple);
+}
+
 /* Buttons */
 .button-link {
     border: 1.5px solid var(--black);
     text-decoration: none;
     border-radius: 500px;
     width: fit-content;
+    height: fit-content;
+    flex: none;
     color: var(--black);
     padding: 0.5rem 1rem;
     display: block;
@@ -92,7 +109,7 @@ h6 {
 .button-link:focus,
 .button-link:active {
     font-weight: 600;
-    box-shadow: 0px 5px 15px 0px rgba(255, 255, 255, 0.2), 0px -5px 15px 0px rgba(255, 255, 255, 0.2);
+    box-shadow: 2px 2px 0px 2px var(--black), 0px 5px 15px 0px rgba(255, 255, 255, 0.2), 0px -5px 15px 0px rgba(255, 255, 255, 0.2);
 }
 
 .button-link.plain {
@@ -112,10 +129,6 @@ h6 {
     background-color: var(--white);
 }
 
-
-[data-theme='dark'] .button-link.plain {
-    background-color: var(--dark-mode-purple);
-}
 
 [data-theme='dark'] .button-link.color {
     background-color: var(--dark-mode-yellow);
@@ -145,7 +158,7 @@ h6 {
 .github-link:focus svg,
 .github-link:active svg {
     filter:
-        drop-shadow(0px 5px 15px rgba(255, 255, 255, 0.2)) drop-shadow(0px -5px 15px rgba(255, 255, 255, 0.2));
+        drop-shadow(2px 2px 0px var(--black)) drop-shadow(0px 5px 15px rgba(255, 255, 255, 0.2)) drop-shadow(0px -5px 15px rgba(255, 255, 255, 0.2));
 
 }
 
@@ -179,6 +192,22 @@ h6 {
 
 [data-theme='dark'] .github-link.color:hover path {
     fill: var(--white);
+}
+
+/* Tech chips */
+
+.tech-chip {
+    list-style: none;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--light-mode-pink);
+    border: 1.5px var(--white) solid;
+    border-radius: 500px;
+}
+
+[data-theme='dark'] .tech-chip {
+    border-color: var(--black);
+    color: var(--black);
+    background-color: var(--dark-mode-yellow);
 }
 
 /* Error page */

@@ -7,6 +7,7 @@ import { ASSETS_FOLDER_PATH } from "../utilities/GlobalVariables"
 import GithubLink from "../components/GithubLink"
 import { useTheme } from "../context/Context"
 import ErrorPage from "./ErrorPage"
+import FeaturedImage from "../utilities/FeaturedImage"
 
 const HomePage = () => {
     const restPath = REST_BASE + 'pages/37';
@@ -25,11 +26,11 @@ const HomePage = () => {
                 const response = await fetch(restPath)
                 if (response.ok) {
                     const data = await response.json();
-                    setData(data.acf);
+                    setData(data);
                     const featured_projects = data.acf.featured_projects;
 
                     const projectPromises = featured_projects.map(async (id) => {
-                        const resp = await fetch(REST_BASE + "posts/" + id);
+                        const resp = await fetch(REST_BASE + "posts/" + id + "?_embed");
                         if (resp.ok) {
                             return await resp.json();
                         }
@@ -67,9 +68,9 @@ const HomePage = () => {
         <main className={styles.main} id="site-main">
             <section className={styles.hero}>
                 <div className={styles.hero_content}>
-                    <h1>{restData.name}</h1>
-                    <p className={styles.title}>{restData.title}</p>
-                    <p>{restData.hero_blurb}</p>
+                    <h1>{restData.acf.name}</h1>
+                    <p className={styles.title}>{restData.acf.title}</p>
+                    <p>{restData.acf.hero_blurb}</p>
                     <div className={styles.hero_links}>
                         <ButtonLink isInternal={true} link="/Projects" label="My Works ✦" color={theme === "dark" ? "color" : "plain"} />
                         <GithubLink link="https://github.com/MelissaGoon" color={theme === "dark" ? "color" : "plain"} />
@@ -97,7 +98,7 @@ const HomePage = () => {
 
                 <div className={styles.about_me}>
                     <div className={styles.about_top}>
-                        <h2 id="about-me">{restData.about_me_title}</h2>
+                        <h2 id="about-me">{restData.acf.about_me_title}</h2>
 
                         <div className={styles.info_card_container}>
                             <div className={styles.info_card}>
@@ -110,7 +111,7 @@ const HomePage = () => {
                                     <path fillRule="evenodd" clipRule="evenodd" d="M81.5256 30.2389C82.1349 30.1391 82.1349 28.7898 81.5256 28.69C61.4038 25.3933 45.6858 14.3117 41.6591 0.407259C41.5018 -0.135754 40.4796 -0.135753 40.3224 0.407261C36.2956 14.3118 20.5777 25.3942 0.456985 28.691C-0.152331 28.7908 -0.152327 30.1401 0.456989 30.2399C20.5777 33.5366 36.2956 44.6182 40.3223 58.5226C40.4796 59.0656 41.5018 59.0656 41.6591 58.5226C45.6858 44.6174 61.4038 33.5356 81.5256 30.2389Z" fill="#E9FF5C" />
                                 </svg>
 
-                                <p>{restData.education}</p>
+                                <p>{restData.acf.education}</p>
 
 
                             </div>
@@ -121,13 +122,13 @@ const HomePage = () => {
                                     <path fillRule="evenodd" clipRule="evenodd" d="M25.0215 0.433471C25.1658 -0.144492 26.4504 -0.144489 26.5947 0.433471C29.5997 12.4651 39.0914 21.957 51.1231 24.9618C51.7008 25.1064 51.7976 26.7739 51.2647 27.0399C39.0146 33.1471 29.3727 58.3927 26.4844 73.579C26.373 74.164 25.2434 74.1639 25.1318 73.579C22.2435 58.3928 12.6013 33.148 0.350593 27.0409C-0.182483 26.775 -0.0857213 25.1072 0.492195 24.9628C12.5246 21.9579 22.0166 12.4659 25.0215 0.433471ZM25.5977 20.0604C20.9033 20.0604 17.0977 23.866 17.0977 28.5604C17.0978 33.2547 20.9034 37.0604 25.5977 37.0604C30.292 37.0604 34.0975 33.2547 34.0977 28.5604C34.0977 23.866 30.2921 20.0604 25.5977 20.0604Z" fill="#E9FF5C" />
                                 </svg>
 
-                                <p>{restData.location}</p>
+                                <p>{restData.acf.location}</p>
 
                             </div>
                         </div>
                     </div>
                     <div className={styles.about_div}>
-                        <p>{restData.short_about_me_paragraph}</p>
+                        <p>{restData.acf.short_about_me_paragraph}</p>
 
                     </div>
 
@@ -139,19 +140,40 @@ const HomePage = () => {
 
             <div className="divider"></div>
 
-            <section>
-                <div><h2>Featured Projects</h2>
+            <section className={styles.featured_projects}>
+                <div className={styles.featured_heading}><h2>Featured Projects</h2>
                     <ButtonLink color="color" label="See More →" isInternal={true} link='/projects' />
                 </div>
+                <div className={styles.project_container}>
 
-                {
+                    {
 
-                    projects.map((project) => (
-                        <article key={project.id}>
-                            <h2>{project.title.rendered}</h2>
-                            <p>{project.acf.tagline}</p>
-                        </article>))
-                }
+                        projects.map((project) => {
+                            const roles = project._embedded['wp:term'][0];
+                            let roles_string = "";
+                            roles.map((role) => roles_string += role.name);
+
+                            const tech = project._embedded['wp:term'][1];
+
+                            return (
+                                <article key={project.id} className={styles.project_card}>
+                                    {project.featured_media !== 0 && project._embedded &&
+                                        <FeaturedImage className={styles.project_fig} featuredImageObject={project._embedded['wp:featuredmedia'][0]} />
+                                    }
+                                    <div className={styles.card_content}>
+                                        <h3>{project.title.rendered}</h3>
+                                        <ul>
+                                            {tech.map((t) => (<li key={t.id} className="tech-chip">{t.name}</li>))}
+                                        </ul>
+                                        <p className={styles.proj_roles}><strong>{roles_string}</strong> </p>
+                                        <p className={styles.proj_tagline}>{project.acf.tagline}</p>
+                                        <ButtonLink color="plain" label="✦ View Project ✦" isInternal={true} link={`/projects/${project.id}`} />
+
+                                    </div>
+                                </article>)
+                        })
+                    }
+                </div>
 
             </section>
         </main>

@@ -180,7 +180,7 @@
 .about_div,
 .info_card {
     background-color: var(--light-mode-blue);
-    border: solid 1px var(--black);
+    border: solid 1.5px var(--black);
 }
 
 [data-theme='dark'] .about_div,
@@ -217,7 +217,7 @@
 
 .about_div {
     padding: 1rem;
-    border-radius: 20px;
+    border-radius: var(--rounded-border);
 }
 
 .about_me p {
@@ -225,7 +225,7 @@
 }
 
 .about_me h2 {
-    font-size: clamp(2.5rem, 12vw, 5rem);
+    font-size: var(--xl-text);
     margin: 0.5rem;
     align-self: end;
 }
@@ -251,7 +251,7 @@
     }
 
     .info_card {
-        border-radius: 20px;
+        border-radius: var(--rounded-border);
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -270,6 +270,118 @@
         line-height: 1.5rem;
     }
 }
+
+/* Featured Projects */
+.featured_projects {
+    margin: var(--mobile-vertical-space) var(--mobile-margin);
+}
+
+.featured_projects h2 {
+    font-size: var(--lg-text);
+    margin: 0;
+}
+
+.featured_heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.project_container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--mobile-margin);
+    padding: var(--mobile-vertical-space) 0;
+}
+
+.project_card {
+    background: var(--light-mode-blue);
+    border: solid 1.5px var(--black);
+    border-radius: var(--rounded-border);
+    overflow: hidden;
+    max-width: 18.125rem;
+}
+
+[data-theme='dark'] .project_card {
+    background: var(--dark-mode-purple);
+    border: solid 1.5px var(--white);
+}
+
+.project_fig {
+    width: 100%;
+    margin: 0px;
+    max-height: 350px;
+    overflow: hidden;
+}
+
+.project_fig img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--mobile-margin);
+    gap: 0.25rem;
+    position: relative;
+}
+
+.card_content::before {
+    /* Adapted from : https://codepen.io/ongtiffany/pen/rOwryp */
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    width: 100%;
+    content: " ";
+    background:
+        radial-gradient(circle at 50%, var(--light-mode-blue) 45%, rgba(255, 255, 255, 0) 46%, rgba(255, 255, 255, 0) 50%);
+    background-size: 3rem 7rem;
+    height: 3rem;
+    background-repeat: repeat-x;
+}
+
+[data-theme='dark'] .card_content::before {
+    background:
+        radial-gradient(circle at 50%, var(--dark-mode-purple) 45%, rgba(255, 255, 255, 0) 46%, rgba(255, 255, 255, 0) 50%);
+    background-size: 3rem 7rem;
+    background-repeat: repeat-x;
+}
+
+.card_content h3 {
+    font-size: 2rem;
+}
+
+
+.card_content * {
+    margin: 0;
+    text-align: center;
+}
+
+.card_content ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 100%;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.card_content li {
+    list-style: none;
+}
+
+.proj_tagline {
+    margin: 0.75rem var(--mobile-margin);
+}
+
+
 
 /* Animations */
 @media (prefers-reduced-motion: no-preference) {
