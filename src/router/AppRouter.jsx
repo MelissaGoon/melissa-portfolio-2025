@@ -3,11 +3,11 @@ import HomePage from '../pages/HomePage';
 import AboutPage from '../pages/AboutPage';
 import ProjectsPage from '../pages/ProjectsPage';
 import SingleItemPage from '../pages/SingleItemPage';
-import NotFoundPage from '../pages/NotFoundPage';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ScrollToTop from '../utilities/ScrollToTop';
 import ThemeProvider from '../context/ThemeContextProvider';
+import ErrorPage from '../pages/ErrorPage';
 
 const AppRouter = () => {
     return (
@@ -24,7 +24,7 @@ const AppRouter = () => {
                     <Route path='/about' element={<AboutPage />} />
                     <Route path='/projects' element={<ProjectsPage />} />
                     <Route path='/projects/:id' element={<SingleItemPage />} />
-                    <Route path='*' element={<NotFoundPage />} />
+                    <Route path='*' element={<ErrorPage errorCode={404} />} />
                 </Routes>
 
 

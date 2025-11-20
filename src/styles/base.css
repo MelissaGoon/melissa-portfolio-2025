@@ -199,6 +199,7 @@ h6 {
 
 .tech-chip {
     list-style: none;
+    width: fit-content;
     padding: 0.25rem 0.5rem;
     background-color: var(--light-mode-pink);
     border: 1.5px var(--white) solid;
@@ -209,6 +210,12 @@ h6 {
     border-color: var(--black);
     color: var(--black);
     background-color: var(--dark-mode-yellow);
+}
+
+[data-theme='dark'] .tech-chip.purple {
+    background-color: var(--dark-mode-purple);
+    color: var(--white);
+
 }
 
 /* Error page */

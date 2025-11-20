@@ -111,11 +111,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-
+    pointer-events: none;
     z-index: 999;
 }
 
 .header ul {
+    pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -159,6 +160,7 @@
 /* Open Nav Button */
 
 .menu_right button {
+    pointer-events: auto;
     height: 2.3rem;
     margin: 1rem;
     display: flex;

@@ -8,61 +8,59 @@ import GithubLink from "../components/GithubLink"
 import { useTheme } from "../context/Context"
 import ErrorPage from "./ErrorPage"
 import FeaturedImage from "../utilities/FeaturedImage"
+import { fetchProjects, fetchData } from "../utilities/GlobalUtils"
+import ProjectMedia from "../components/ProjectMedia"
 
 const HomePage = () => {
+    // Data
     const restPath = REST_BASE + 'pages/37';
     const [restData, setData] = useState([]);
     const [projects, setProjects] = useState([]);
 
-    const [isLoaded, setLoadStatus] = useState(false);
+    // Page State
+    const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(false);
+    const [errorCode, setErrorCode] = useState(404);
 
+    // Accessibility
     const { theme } = useTheme();
     const noMotionPreference = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
+    // Fetch data
     useEffect(() => {
-        const fetchData = async () => {
+        const loadData = async () => {
             try {
-                const response = await fetch(restPath)
-                if (response.ok) {
-                    const data = await response.json();
-                    setData(data);
-                    const featured_projects = data.acf.featured_projects;
+                const data = await fetchData(restPath);
+                setData(data);
 
-                    const projectPromises = featured_projects.map(async (id) => {
-                        const resp = await fetch(REST_BASE + "posts/" + id + "?_embed&acf_format=standard");
-                        if (resp.ok) {
-                            return await resp.json();
-                        }
-                        return null;
-                    });
+                // Get featured project data
+                const featured_projects = data.acf.featured_projects;
+                const validProjects = await fetchProjects(featured_projects);
+                setProjects(validProjects);
 
-                    const fetchedProjects = await Promise.all(projectPromises);
-                    const validProjects = fetchedProjects.filter(p => p !== null);
-
-                    setProjects(validProjects);
-                    setLoadStatus(true);
-                } else {
-                    setLoadStatus(false);
-                    setError(true);
-                }
-            } catch (error) {
-                setLoadStatus(false);
+                setIsLoaded(true);
+            } catch (err) {
+                setIsLoaded(true);
                 setError(true);
-                console.log(error);
+                if (err.status) {
+                    setErrorCode(err.status);
+                }
+                console.log(err);
             }
-        }
-        fetchData()
+        };
+        loadData();
     }, [restPath]);
 
     if (!isLoaded) {
         return (<LoadingPage />)
     }
+
     if (error) {
         return (
-            <ErrorPage />
+            <ErrorPage errorCode={errorCode} />
         )
     }
+
 
     return (
         <main className={styles.main} id="site-main">
@@ -151,43 +149,14 @@ const HomePage = () => {
                         projects.map((project) => {
                             const roles = project._embedded['wp:term'][0];
                             let roles_string = "";
-                            roles.map((role) => roles_string += role.name);
+                            roles.map((role) => roles_string += (role.name + ", "));
+                            roles_string = roles_string.slice(0, -2); //remove trailing comma and space
 
                             const tech = project._embedded['wp:term'][1];
 
                             return (
                                 <article key={project.id} className={styles.project_card}>
-                                    {(() => {
-
-                                        if (project.acf?.demo_video?.url) {
-                                            return (
-                                                <video
-                                                    className={styles.project_media}
-                                                    src={project.acf.demo_video.url}
-                                                    loop
-                                                    muted
-                                                    playsInline
-                                                    autoPlay={noMotionPreference}
-                                                    aria-label={`Demo video for project: ${project.title.rendered}`}
-                                                />
-                                            );
-                                        } else if (project.featured_media !== 0 && project._embedded) {
-                                            return (
-                                                <FeaturedImage
-                                                    className={styles.project_fig}
-                                                    featuredImageObject={project._embedded["wp:featuredmedia"][0]}
-                                                />
-                                            );
-                                        } else {
-                                            return (
-                                                <img
-                                                    className={styles.project_media}
-                                                    src="assets/placeholder.png"
-                                                    alt="Placeholder image: no media available for this project"
-                                                />
-                                            );
-                                        }
-                                    })()}
+                                    <ProjectMedia projectData={project} noMotionPreference={noMotionPreference} figureStyle={styles.project_fig} />
 
                                     <div className={styles.card_content}>
                                         <h3>{project.title.rendered}</h3>
@@ -197,7 +166,6 @@ const HomePage = () => {
                                         <p ><strong>{roles_string}</strong> </p>
                                         <p className={styles.proj_tagline}>{project.acf.tagline}</p>
                                         <ButtonLink color="plain" label="✦ View Project ✦" isInternal={true} link={`/projects/${project.id}`} />
-
                                     </div>
                                 </article>)
                         })
