@@ -30,7 +30,7 @@ const HomePage = () => {
                     const featured_projects = data.acf.featured_projects;
 
                     const projectPromises = featured_projects.map(async (id) => {
-                        const resp = await fetch(REST_BASE + "posts/" + id + "?_embed");
+                        const resp = await fetch(REST_BASE + "posts/" + id + "?_embed&acf_format=standard");
                         if (resp.ok) {
                             return await resp.json();
                         }
@@ -78,7 +78,7 @@ const HomePage = () => {
 
                     <a className={styles.down_arrow} href="#about-me" >
                         <span className="screen-reader-text">Click to scroll to the About section.</span>
-                        <svg width="121" height="53" viewBox="0 0 121 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg focusable="false" aria-hidden="true" width="121" height="53" viewBox="0 0 121 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M98.6323 0C104.372 5.71003 113.376 6.70124 120.221 2.37744C114.511 8.11725 113.52 17.1214 117.844 23.9663C112.267 18.4187 102.703 20.9864 96.0146 23.8813L60.145 52.3081L24.3574 23.9473C17.6627 21.0261 7.99786 18.3773 2.37891 23.9663C6.70265 17.1213 5.71007 8.11719 0 2.37744C6.84536 6.70162 15.8502 5.71032 21.5903 0C17.1429 6.9908 22.0715 15.9677 26.48 21.8013L60.145 48.479L93.6401 21.9346C98.0738 16.1052 103.114 7.04447 98.6323 0Z" fill="white" />
                         </svg>
 
@@ -157,9 +157,38 @@ const HomePage = () => {
 
                             return (
                                 <article key={project.id} className={styles.project_card}>
-                                    {project.featured_media !== 0 && project._embedded &&
-                                        <FeaturedImage className={styles.project_fig} featuredImageObject={project._embedded['wp:featuredmedia'][0]} />
-                                    }
+                                    {(() => {
+
+                                        if (project.acf?.demo_video?.url) {
+                                            return (
+                                                <video
+                                                    className={styles.project_media}
+                                                    src={project.acf.demo_video.url}
+                                                    loop
+                                                    muted
+                                                    playsInline
+                                                    autoPlay={noMotionPreference}
+                                                    aria-label={`Demo video for project: ${project.title.rendered}`}
+                                                />
+                                            );
+                                        } else if (project.featured_media !== 0 && project._embedded) {
+                                            return (
+                                                <FeaturedImage
+                                                    className={styles.project_fig}
+                                                    featuredImageObject={project._embedded["wp:featuredmedia"][0]}
+                                                />
+                                            );
+                                        } else {
+                                            return (
+                                                <img
+                                                    className={styles.project_media}
+                                                    src="assets/placeholder.png"
+                                                    alt="Placeholder image: no media available for this project"
+                                                />
+                                            );
+                                        }
+                                    })()}
+
                                     <div className={styles.card_content}>
                                         <h3>{project.title.rendered}</h3>
                                         <ul>
