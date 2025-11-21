@@ -32,10 +32,12 @@
 
 ::selection {
     background-color: var(--light-mode-pink);
+    color: var(--black);
 }
 
 [data-theme='dark'] ::selection {
-    background-color: var(--dark-mode-purple);
+    background-color: #391ee3;
+    color: var(--white);
 }
 
 
@@ -43,6 +45,9 @@ html {
     scrollbar-width: thin;
 }
 
+main {
+    min-height: 100vh;
+}
 
 body {
     font-family: "Bai Jamjuree", sans-serif;
