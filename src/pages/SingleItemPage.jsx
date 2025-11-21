@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useTheme } from "../context/Context";
 import { REST_BASE } from "../utilities/GlobalVariables";
 import LoadingPage from "../components/LoadingPage";
 import ErrorPage from "./ErrorPage";
@@ -9,14 +8,16 @@ import styles from '../styles/modules/single.module.css'
 import FeaturedImage from "../utilities/FeaturedImage"
 import GithubLink from "../components/GithubLink";
 import ButtonLink from "../components/ButtonLink";
-import { useIsMobile } from "../utilities/IsMobile";
 import ProjectMedia from "../components/ProjectMedia";
+import Tabs from "../components/Tabs";
+import KeyContributionsContent from "../components/KeyContributionsContent";
+import InsightsContent from "../components/InsightsContent";
 
 const SingleItemPage = () => {
     const { id } = useParams();
     const restPath = REST_BASE + 'posts/' + id + "?_embed&acf_format=standard";
     const [projData, setProjData] = useState([]);
-    const [projects, setProjects] = useState([]);
+    const [moreProjects, setMoreProjects] = useState([]);
 
     // Page State
     const [isLoaded, setIsLoaded] = useState(false);
@@ -24,9 +25,8 @@ const SingleItemPage = () => {
     const [errorCode, setErrorCode] = useState(404);
 
     // Accessibility
-    const { theme } = useTheme();
     const noMotionPreference = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
-    const isMobile = useIsMobile();
+
 
     // Fetch data
     useEffect(() => {
@@ -37,9 +37,8 @@ const SingleItemPage = () => {
 
                 // Get related project data
                 const related_project_ids = data.acf?.related_projects.map((item) => item.ID);
-                console.log(related_project_ids);
                 const validProjects = await fetchProjects(related_project_ids);
-                setProjects(validProjects);
+                setMoreProjects(validProjects);
 
                 setIsLoaded(true);
             } catch (err) {
@@ -63,6 +62,9 @@ const SingleItemPage = () => {
             <ErrorPage errorCode={errorCode} />
         )
     }
+
+
+
 
     return (
         <main id="site-main">
@@ -90,6 +92,60 @@ const SingleItemPage = () => {
                 {projData.acf?.external_link?.link_url && projData.acf?.external_link?.button_text &&
                     <ButtonLink color="color" isInternal={false} link={projData.acf.external_link.link_url} label={projData.acf.external_link.button_text} />}
             </div>
+
+
+            {projData.acf?.tabs?.length > 0 && (() => {
+
+
+                let tabs = projData.acf.tabs.map((tab, index) => {
+                    if (tab.acf_fc_layout === "key_contributions") {
+                        return { id: `tab${index}`, label: tab.tab_title, content: <KeyContributionsContent acfContributionItem={tab} className={styles.contributions} /> };
+                    } else if (tab.acf_fc_layout === "insights") {
+                        return { id: `tab${index}`, label: tab.tab_title, content: <InsightsContent acfInsightItem={tab} className={styles.insights} /> };
+                    } else {
+                        return { id: `tab${index}`, label: tab.tab_title, content: <div className={styles.design} dangerouslySetInnerHTML={{ __html: tab.tab_content }}></div> };
+                    }
+
+                })
+
+
+                return (
+                    <section>
+                        <h2>{projData.acf.tabs_section_title}</h2>
+                        <Tabs tabs={tabs} styles={styles} />
+                    </section>)
+            })()}
+
+
+            <section>
+                <h2>More Projects</h2>
+                <div className={styles.project_container}>
+
+                    {
+
+                        moreProjects.map((project) => {
+
+                            const tech = project._embedded['wp:term'][1];
+
+                            return (
+                                <article key={project.id} className={styles.project_card}>
+                                    <ProjectMedia projectData={project} noMotionPreference={noMotionPreference} figureStyle={styles.project_fig} />
+
+                                    <div className={styles.card_content}>
+                                        <h3>{project.title.rendered}</h3>
+                                        <ul>
+                                            {tech.map((t) => (<li key={t.id} className="tech-chip">{t.name}</li>))}
+                                        </ul>
+
+
+                                        <ButtonLink color="plain" label="View Project" isInternal={true} link={`/projects/${project.id}`} />
+                                    </div>
+                                </article>)
+                        })
+                    }
+                </div>
+            </section>
+
 
         </main>
     )
