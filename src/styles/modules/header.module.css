@@ -61,6 +61,7 @@
 .logo_link:active,
 .theme_toggle:active {
     background-color: var(--alt-color);
+    border: var(--text-color) 1.5px solid;
 }
 
 

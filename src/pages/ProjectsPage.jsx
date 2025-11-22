@@ -108,13 +108,14 @@ const ProjectsPage = () => {
         <main id="site-main" className={styles.projects_page}>
 
             <aside className={styles.filter_container}>
+                <h1>My Projects ✦</h1>
                 <h2>Filters</h2>
 
-                <fieldset>
+                <fieldset className={styles.filter_field}>
                     <legend> Technologies</legend>
-                    <div>
+                    <div className={styles.checkbox_container}>
                         {technologies.map((tech) => (
-                            <div className={styles.technology} key={tech.id}>
+                            <div className={styles.checkbox} key={tech.id}>
                                 <input
                                     type="checkbox"
                                     name="tech"
@@ -132,11 +133,11 @@ const ProjectsPage = () => {
                     </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset className={styles.filter_field}>
                     <legend>Roles</legend>
-                    <div>
+                    <div className={styles.checkbox_container}>
                         {roles.map((role) => (
-                            <div className={styles.role} key={role.id}>
+                            <div className={styles.checkbox} key={role.id}>
                                 <input
                                     type="checkbox"
                                     name="role"
@@ -154,14 +155,14 @@ const ProjectsPage = () => {
                     </div>
                 </fieldset>
 
-                <button onClick={clearFilters}>
+                <button onClick={clearFilters} className={styles.clear_filters}>
                     Clear Filters
                 </button>
 
             </aside>
 
             <div className={styles.content_container}>
-                <h1>My Projects</h1>
+
                 <div className="screen-reader-text" aria-live='polite' role='region'>
                     <p>Projects Displayed: {currentProjects.length}</p>
                 </div>
@@ -174,7 +175,7 @@ const ProjectsPage = () => {
 
                     {
                         currentProjects.length === 0 &&
-                        <p> Nothing matches those filters, try giving them a tweak to explore more projects!</p>
+                        <p className={styles.empty}> Nothing matches those filters, try giving them a tweak to explore more projects!</p>
                     }
                 </div>
             </div>
