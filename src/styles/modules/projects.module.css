@@ -1,0 +1,175 @@
+.projects_container {
+
+    overflow-x: scroll;
+    gap: 1rem;
+}
+
+@media (min-width:45em) {
+    .projects_container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        overflow-x: unset;
+        gap: 1rem;
+    }
+
+    .projects_page {
+        display: grid;
+        grid-template-columns: 1fr, 3fr;
+    }
+
+    .filter_container {
+        grid-column: 1/ 2;
+    }
+
+
+    .content_container {
+        grid-column: 2/3;
+    }
+
+}
+
+/* Filters */
+
+
+/* Project card */
+.project_card {
+    background: var(--light-mode-blue);
+    border: solid 2px var(--black);
+    overflow: hidden;
+    width: 18.75rem;
+    flex: none;
+}
+
+[data-theme='dark'] .project_card {
+    background: var(--dark-mode-purple);
+    border: solid 1.5px var(--white);
+}
+
+.project_fig {
+    width: 100%;
+    margin: 0px;
+
+    overflow: hidden;
+}
+
+.project_fig * {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+
+}
+
+.card_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--mobile-margin);
+    gap: 0.25rem;
+    position: relative;
+}
+
+
+.card_content h3 {
+    font-size: 1.5rem;
+    font-family: "Bai Jamjuree", sans-serif;
+}
+
+[data-theme="dark"] .card_content h3 {
+    color: var(--white);
+}
+
+.card_content * {
+    margin: 0;
+    text-align: center;
+}
+
+.card_content ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    width: 100%;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.card_content li {
+    list-style: none;
+}
+
+@media (min-width:45em) {
+
+    .project_card,
+    [data-theme='dark'] .project_card {
+        width: auto;
+        flex: auto;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        max-width: 800px;
+        min-height: 250px;
+        justify-content: center;
+        align-items: stretch;
+
+    }
+
+    .card_content {
+
+        padding: 1rem;
+        order: 0;
+
+    }
+
+    .project_fig {
+
+        border-left: 1.5px solid var(--black);
+        max-height: none;
+        display: flex;
+        order: 1;
+
+        height: 0;
+        min-height: 100%;
+
+    }
+
+    .project_fig * {
+        width: 100%;
+        height: 100%;
+        object-position: center;
+        display: block;
+    }
+
+    .card_content p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .card_content h3 {
+        font-size: 2rem;
+    }
+
+
+
+
+
+}
+
+/* Animations */
+@media (prefers-reduced-motion: no-preference) {
+    @media (min-width:45em) {
+        .project_card {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .project_card:hover {
+            grid-template-columns: 2fr 1fr;
+        }
+
+
+    }
+
+}

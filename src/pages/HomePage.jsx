@@ -1,15 +1,14 @@
 import { REST_BASE } from "../utilities/GlobalVariables"
 import { useState, useEffect } from "react"
-import LoadingPage from "../components/LoadingPage"
+import LoadingPage from "./LoadingPage"
 import styles from '../styles/modules/home.module.css'
 import ButtonLink from "../components/ButtonLink"
 import { ASSETS_FOLDER_PATH } from "../utilities/GlobalVariables"
 import GithubLink from "../components/GithubLink"
 import { useTheme } from "../context/Context"
 import ErrorPage from "./ErrorPage"
-import FeaturedImage from "../utilities/FeaturedImage"
 import { fetchProjects, fetchData } from "../utilities/GlobalUtils"
-import ProjectMedia from "../components/ProjectMedia"
+import ProjectCard from "../components/ProjectCard"
 
 const HomePage = () => {
     // Data
@@ -146,29 +145,8 @@ const HomePage = () => {
 
                     {
 
-                        projects.map((project) => {
-                            const roles = project._embedded['wp:term'][0];
-                            let roles_string = "";
-                            roles.map((role) => roles_string += (role.name + ", "));
-                            roles_string = roles_string.slice(0, -2); //remove trailing comma and space
-
-                            const tech = project._embedded['wp:term'][1];
-
-                            return (
-                                <article key={project.id} className={styles.project_card}>
-                                    <ProjectMedia projectData={project} noMotionPreference={noMotionPreference} figureStyle={styles.project_fig} />
-
-                                    <div className={styles.card_content}>
-                                        <h3>{project.title.rendered}</h3>
-                                        <ul>
-                                            {tech.map((t) => (<li key={t.id} className="tech-chip">{t.name}</li>))}
-                                        </ul>
-                                        <p ><strong>{roles_string}</strong> </p>
-                                        <p className={styles.proj_tagline}>{project.acf.tagline}</p>
-                                        <ButtonLink color="plain" label="✦ View Project ✦" isInternal={true} link={`/projects/${project.id}`} />
-                                    </div>
-                                </article>)
-                        })
+                        projects.map((project) => (
+                            <ProjectCard project={project} styles={styles} buttonLabel="✦ View Project ✦" />))
                     }
                 </div>
 

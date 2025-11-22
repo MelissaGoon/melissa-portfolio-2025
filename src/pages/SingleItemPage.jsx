@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { REST_BASE } from "../utilities/GlobalVariables";
-import LoadingPage from "../components/LoadingPage";
+import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 import { fetchProjects, fetchData } from "../utilities/GlobalUtils"
 import styles from '../styles/modules/single.module.css'

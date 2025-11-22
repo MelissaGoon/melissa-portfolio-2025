@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../utilities/ScrollToTop';
 import ThemeProvider from '../context/ThemeContextProvider';
 import ErrorPage from '../pages/ErrorPage';
+import LoadingPage from '../pages/LoadingPage';
 
 const AppRouter = () => {
     return (

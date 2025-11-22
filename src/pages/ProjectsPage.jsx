@@ -1,11 +1,10 @@
 import { fetchData } from "../utilities/GlobalUtils";
 import { REST_BASE } from "../utilities/GlobalVariables";
 import { useState, useEffect } from "react";
-import LoadingPage from "../components/LoadingPage";
+import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 import styles from '../styles/modules/projects.module.css'
-import ProjectMedia from "../components/ProjectMedia";
-import ButtonLink from "../components/ButtonLink";
+import ProjectCard from "../components/ProjectCard";
 
 const ProjectsPage = () => {
     const restPath = REST_BASE + 'posts?_embed';
@@ -22,8 +21,6 @@ const ProjectsPage = () => {
     const [activeFilters, setActiveFilters] = useState({ tech: [], role: [] });
     const [currentProjects, setCurrentProjects] = useState([]);
 
-    // Accessibility
-    const noMotionPreference = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
     useEffect(() => {
         const loadData = async () => {
@@ -108,9 +105,9 @@ const ProjectsPage = () => {
     };
 
     return (
-        <main id="site-main">
+        <main id="site-main" className={styles.projects_page}>
 
-            <aside>
+            <aside className={styles.filter_container}>
                 <h2>Filters</h2>
 
                 <fieldset>
@@ -163,38 +160,21 @@ const ProjectsPage = () => {
 
             </aside>
 
-            <div>
+            <div className={styles.content_container}>
                 <h1>My Projects</h1>
-                <div aria-live='polite' role='region'>
+                <div className="screen-reader-text" aria-live='polite' role='region'>
                     <p>Projects Displayed: {currentProjects.length}</p>
                 </div>
 
-                <div>
+                <div className={styles.projects_container}>
                     {
                         currentProjects.length > 0 &&
-                        currentProjects.map((project) => {
-                            const roles = project._embedded['wp:term'][0];
-                            let roles_string = "";
-                            roles.map((role) => roles_string += (role.name + ", "));
-                            roles_string = roles_string.slice(0, -2); //remove trailing comma and space
+                        currentProjects.map((project) => (<ProjectCard key={project.id} project={project} styles={styles} buttonLabel="View Project →" buttonColor="color" buttonSize="small" />))
+                    }
 
-                            const tech = project._embedded['wp:term'][1];
-
-                            return (
-                                <article key={project.id} className={styles.project_card}>
-                                    <ProjectMedia projectData={project} noMotionPreference={noMotionPreference} figureStyle={styles.project_fig} />
-
-                                    <div className={styles.card_content}>
-                                        <h3>{project.title.rendered}</h3>
-                                        <ul>
-                                            {tech.map((t) => (<li key={t.id} className="tech-chip">{t.name}</li>))}
-                                        </ul>
-                                        <p ><strong>{roles_string}</strong> </p>
-                                        <p className={styles.proj_tagline}>{project.acf.tagline}</p>
-                                        <ButtonLink color="plain" label="✦ View Project ✦" isInternal={true} link={`/projects/${project.id}`} />
-                                    </div>
-                                </article>)
-                        })
+                    {
+                        currentProjects.length === 0 &&
+                        <p> Nothing matches those filters, try giving them a tweak to explore more projects!</p>
                     }
                 </div>
             </div>

@@ -1,18 +1,18 @@
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
-const ButtonLink = ({ color = "plain", label, isInternal, link, style }) => {
+const ButtonLink = ({ color = "plain", label, isInternal, link, size, style }) => {
 
     if (isInternal) {
         return (
-            <Link to={link} className={` ${color} button-link`} style={style}>
+            <Link to={link} className={` ${color} ${size} button-link`} style={style}>
                 {label}
 
             </Link>
         )
     } else {
         return (
-            <a href={link} className={` ${color} button-link`} style={style} target="_blank" rel="noopener noreferrer">
+            <a href={link} className={` ${color} ${size} button-link`} style={style} target="_blank" rel="noopener noreferrer">
 
                 {label}
             </a>
