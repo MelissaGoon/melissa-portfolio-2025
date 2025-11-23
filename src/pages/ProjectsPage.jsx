@@ -5,6 +5,7 @@ import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 import styles from '../styles/modules/projects.module.css'
 import ProjectCard from "../components/ProjectCard";
+import ScrollDrag from "../utilities/ScrollDrag";
 
 const ProjectsPage = () => {
     const restPath = REST_BASE + 'posts?_embed';
@@ -167,7 +168,7 @@ const ProjectsPage = () => {
                     <p>Projects Displayed: {currentProjects.length}</p>
                 </div>
 
-                <div className={styles.projects_container}>
+                <ScrollDrag className={styles.projects_container}>
                     {
                         currentProjects.length > 0 &&
                         currentProjects.map((project) => (<ProjectCard key={project.id} project={project} styles={styles} buttonLabel="View Project →" buttonColor="color" buttonSize="small" />))
@@ -177,7 +178,8 @@ const ProjectsPage = () => {
                         currentProjects.length === 0 &&
                         <p className={styles.empty}> Nothing matches those filters, try giving them a tweak to explore more projects!</p>
                     }
-                </div>
+                </ScrollDrag>
+
             </div>
         </main>
     )

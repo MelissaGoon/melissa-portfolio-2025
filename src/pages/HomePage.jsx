@@ -34,7 +34,7 @@ const HomePage = () => {
 
                 // Get featured project data
                 const featured_projects = data.acf.featured_projects;
-                const validProjects = await fetchProjects(featured_projects);
+                const validProjects = await fetchProjects(featured_projects, true);
                 setProjects(validProjects);
 
                 setIsLoaded(true);

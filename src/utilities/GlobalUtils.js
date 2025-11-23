@@ -9,9 +9,9 @@ export const fetchData = async (restPath) => {
     return await response.json();
 };
 
-export const fetchProjects = async (projectIds) => {
+export const fetchProjects = async (projectIds, withVideo) => {
     const projectPromises = projectIds.map(async (id) => {
-        const resp = await fetch(REST_BASE + "posts/" + id + "?_embed&acf_format=standard");
+        const resp = await fetch(REST_BASE + "posts/" + id + "?_embed" + (withVideo ? "&acf_format=standard" : ""));
         if (resp.ok) {
             return await resp.json();
         }

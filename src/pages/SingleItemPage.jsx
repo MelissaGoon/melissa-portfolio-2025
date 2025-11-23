@@ -5,13 +5,13 @@ import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 import { fetchProjects, fetchData } from "../utilities/GlobalUtils"
 import styles from '../styles/modules/single.module.css'
-import FeaturedImage from "../utilities/FeaturedImage"
 import GithubLink from "../components/GithubLink";
 import ButtonLink from "../components/ButtonLink";
 import ProjectMedia from "../components/ProjectMedia";
 import Tabs from "../components/Tabs";
 import KeyContributionsContent from "../components/KeyContributionsContent";
 import InsightsContent from "../components/InsightsContent";
+import ScrollDrag from "../utilities/ScrollDrag";
 
 const SingleItemPage = () => {
     const { id } = useParams();
@@ -37,7 +37,7 @@ const SingleItemPage = () => {
 
                 // Get related project data
                 const related_project_ids = data.acf?.related_projects.map((item) => item.ID);
-                const validProjects = await fetchProjects(related_project_ids);
+                const validProjects = await fetchProjects(related_project_ids, false);
                 setMoreProjects(validProjects);
 
                 setIsLoaded(true);
@@ -67,21 +67,23 @@ const SingleItemPage = () => {
 
 
     return (
-        <main id="site-main">
-            <h1>{projData.title.rendered}</h1>
-            <ul>
+        <main id="site-main" className={styles.main}>
+            <h1>{projData.title.rendered} ✦</h1>
+            <ul className={styles.chips}>
                 {projData._embedded['wp:term'][1].map((t) => (<li key={t.id} className="tech-chip purple">{t.name}</li>))}
             </ul>
 
-            <ProjectMedia projectData={projData} noMotionPreference={noMotionPreference} figureStyle={styles.project_figure} />
-
-            <p><strong>{projData._embedded['wp:term'][0].length > 1 ? "Roles" : "Role"}:</strong>      {(() => {
+            <p className={styles.role}><strong>{projData._embedded['wp:term'][0].length > 1 ? "Roles" : "Role"}:</strong>      {(() => {
                 let roles_string = "";
                 projData._embedded['wp:term'][0].map((role) => roles_string += (role.name + ", "));
                 return roles_string.slice(0, -2);
             })()}</p>
 
-            <section>
+            <ProjectMedia projectData={projData} noMotionPreference={noMotionPreference} figureStyle={styles.project_figure} />
+
+
+
+            <section className={styles.overview}>
                 <h2>Overview</h2>
                 <p>{projData.acf.overview}</p>
             </section>
@@ -119,7 +121,7 @@ const SingleItemPage = () => {
 
             <section>
                 <h2>More Projects</h2>
-                <div className={styles.project_container}>
+                <ScrollDrag className={styles.project_container}>
 
                     {
 
@@ -133,7 +135,7 @@ const SingleItemPage = () => {
 
                                     <div className={styles.card_content}>
                                         <h3>{project.title.rendered}</h3>
-                                        <ul>
+                                        <ul className={styles.chips}>
                                             {tech.map((t) => (<li key={t.id} className="tech-chip">{t.name}</li>))}
                                         </ul>
 
@@ -143,7 +145,7 @@ const SingleItemPage = () => {
                                 </article>)
                         })
                     }
-                </div>
+                </ScrollDrag>
             </section>
 
 

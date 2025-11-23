@@ -1,7 +1,7 @@
 .projects_page {
 
     padding: var(--mobile-margin);
-    padding-top: 3rem;
+    padding-top: var(--mobile-top-padding);
 
 }
 
@@ -9,7 +9,6 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
 
     gap: 1rem;
@@ -21,12 +20,15 @@
 
 .filter_container h2 {
     font-family: "Bai Jamjuree", sans-serif;
+    font-size: 1.25rem;
     margin: 0.5rem 0;
 }
 
 .filter_container h1 {
-    font-size: 2.5rem;
+    font-size: var(--md-text);
     margin: 0.5rem 0;
+    text-decoration: underline wavy var(--light-mode-pink);
+
 }
 
 @media (min-width:45em) {
@@ -35,7 +37,7 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         max-width: var(--desktop-max-w);
         margin: 0 auto;
-        padding: 5rem 2rem;
+        padding: var(--desktop-top-padding) 2rem;
 
         gap: 1rem;
         position: relative;
@@ -74,10 +76,6 @@
         align-self: start
     }
 
-    .filter_container h1 {
-        font-size: 3rem;
-
-    }
 
     .content_container {
         grid-column: 2/5;
@@ -156,7 +154,7 @@
     }
 
     .checkbox {
-        padding: 0.5rem;
+        padding: 0.25rem 0.75rem;
     }
 }
 
@@ -198,7 +196,7 @@
 
 .project_card {
     background: var(--light-mode-blue);
-    border: solid 2px var(--black);
+    border: solid 1.5px var(--black);
     overflow: hidden;
     width: 18.75rem;
     flex: 0 0 auto;
@@ -255,7 +253,7 @@
     padding: 0;
     width: 100%;
     justify-content: center;
-    gap: 0.25rem;
+    gap: var(--chip-gap);
 }
 
 .card_content li {
@@ -323,7 +321,7 @@
 /* Animations */
 @media (prefers-reduced-motion: no-preference) {
     .checkbox {
-        transition: all 0.2s ease-in-out;
+        transition: all 0.3s ease;
     }
 
     @media (min-width:45em) {

@@ -21,7 +21,11 @@
     --desktop-vertical-space: 3rem;
     --xl-text: clamp(2.5rem, 12vw, 5rem);
     --lg-text: clamp(2.5rem, 10vw, 4rem);
+    --md-text: clamp(2rem, 5vw, 3rem);
     --rounded-border: 20px;
+    --mobile-top-padding: 3rem;
+    --desktop-top-padding: 5rem;
+    --chip-gap: 0.25rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {

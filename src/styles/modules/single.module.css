@@ -1,0 +1,174 @@
+.main {
+    padding: var(--mobile-margin);
+    padding-top: var(--mobile-top-padding);
+
+    --main-color: var(--light-mode-blue);
+    --accent-color: var(--light-mode-pink);
+    --border-color: var(--black);
+    --round-gradient: radial-gradient(circle, rgba(254, 166, 239, 1) 0%, rgba(254, 166, 239, 0) 75%);
+}
+
+[data-theme='dark'] .main {
+    --main-color: var(--dark-mode-purple);
+    --accent-color: var(--dark-mode-yellow);
+    --border-color: var(--white);
+    --round-gradient: radial-gradient(circle, rgba(76, 48, 161, 1) 0%, rgba(76, 48, 161, 0) 75%);
+}
+
+.main>* {
+    margin: 1rem 0;
+}
+
+.main h1 {
+    font-size: var(--xl-text);
+    text-decoration: underline wavy var(--main-color);
+}
+
+.main h2 {
+    margin: 0.5rem 0;
+    font-size: var(--md-text);
+
+}
+
+.main h3 {
+    font-family: "Bai Jamjuree", sans-serif;
+    margin: 0.5rem 0;
+}
+
+.chips,
+.button_container {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--chip-gap);
+
+}
+
+.button_container {
+    gap: 0.5rem;
+}
+
+.project_figure {
+
+    border: solid 1.5px var(--black);
+    overflow: hidden;
+    border-radius: var(--rounded-border);
+}
+
+.project_figure * {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.overview {
+    /* background-color: var(--main-color); */
+    /* border: solid 1.5px var(--border-color);
+    padding: 0.5rem;
+    border-radius: var(--rounded-border); */
+}
+
+
+/* Tabs */
+
+.tablist {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.tablist button {
+    width: fit-content;
+    background: none;
+    border-radius: var(--rounded-border) var(--rounded-border) 0 0;
+    border: solid 1.5px var(--border-color);
+    border-bottom: none;
+    font-size: clamp(14px, 1.2vw, 18px);
+    padding: 0.2rem 0.75rem;
+    color: var(--border-color);
+}
+
+.tablist button.current,
+.tablist button:focus,
+.tablist button:active {
+    background-color: var(--light-mode-pink);
+}
+
+[data-theme='dark'] .tablist button.current,
+[data-theme='dark'] .tablist button:focus,
+[data-theme='dark'] .tablist button:active {
+    background-color: var(--dark-mode-purple);
+}
+
+
+.tablist button:hover {
+    background: var(--round-gradient);
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    background-position: right -50px top -50px;
+
+}
+
+.tablist button:focus,
+.tablist button:active {
+    font-weight: 600;
+}
+
+.tabs_content {
+    border: solid 1.5px var(--border-color);
+    border-radius: 0 0 var(--rounded-border) var(--rounded-border);
+    padding: var(--mobile-margin);
+    background: var(--round-gradient);
+    background-size: 300px 300px;
+    background-repeat: no-repeat;
+    background-position: right -150px top -150px;
+}
+
+
+/* More project cards */
+.projects_container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+
+    gap: 1rem;
+}
+
+.project_card {
+    border: 1.5px var(--black) solid;
+    width: 225px;
+
+}
+
+
+.project_fig {
+    width: 100%;
+    margin: 0px;
+
+    overflow: hidden;
+}
+
+.project_fig * {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    object-position: top;
+
+}
+
+.card_content>* {
+    margin: 0;
+}
+
+.card_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    background-color: var(--main-color);
+}
