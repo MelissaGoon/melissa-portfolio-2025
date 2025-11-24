@@ -103,7 +103,7 @@ const SingleItemPage = () => {
 
 
             <div className={styles.button_container}>
-                {projData.acf?.github_link && <GithubLink link={projData.acf.github_link} color="color" />}
+                {projData.acf?.github_link && <GithubLink srText={`View ${projData.title.rendered} on Github`} link={projData.acf.github_link} color="color" />}
 
                 {projData.acf?.external_link?.link_url && projData.acf?.external_link?.button_text &&
                     <ButtonLink color="color" isInternal={false} link={projData.acf.external_link.link_url} label={projData.acf.external_link.button_text} />}

@@ -1,0 +1,147 @@
+.footer_wrapper {
+    background-color: var(--light-mode-pink);
+    padding: 1rem var(--mobile-margin);
+    padding-bottom: 4rem;
+    margin-top: var(--mobile-vertical-space);
+    position: relative;
+}
+
+[data-theme='dark'] .footer_wrapper {
+    background-color: var(--dark-mode-purple);
+}
+
+.footer h2 {
+    font-family: "Bai Jamjuree", sans-serif;
+}
+
+.footer>* {
+    margin: 0.5rem;
+}
+
+.footer_wrapper::before {
+    /* Adapted from : https://codepen.io/ongtiffany/pen/rOwryp */
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    width: 100%;
+    content: " ";
+    background:
+        radial-gradient(circle at 50%, var(--light-mode-pink) 45%, rgba(255, 255, 255, 0) 46%, rgba(255, 255, 255, 0) 50%);
+    background-size: 3rem 6rem;
+    height: 3rem;
+    background-repeat: repeat-x;
+}
+
+[data-theme='dark'] .footer_wrapper::before {
+    background:
+        radial-gradient(circle at 50%, var(--dark-mode-purple) 45%, rgba(255, 255, 255, 0) 46%, rgba(255, 255, 255, 0) 50%);
+    background-size: 3rem 6rem;
+    background-repeat: repeat-x;
+}
+
+.social_links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.social_links a {
+    height: fit-content;
+    transform: scale(1);
+}
+
+.social_links svg {
+    height: 35px;
+    width: auto;
+    object-position: cover;
+    object-position: center;
+}
+
+[data-theme='dark'] .social_links path {
+    fill: var(--dark-mode-yellow);
+}
+
+.social_links a:hover {
+    transform: scale(1.1);
+}
+
+.social_links a:focus svg,
+.social_links a:active svg {
+    filter:
+        drop-shadow(2px 2px 0px var(--white)) drop-shadow(0px 5px 15px rgba(255, 255, 255, 0.2)) drop-shadow(0px -5px 15px rgba(255, 255, 255, 0.2));
+
+}
+
+.copyright {
+    text-align: center;
+    margin-top: var(--mobile-vertical-space);
+}
+
+@media (min-width:45em) {
+    .footer_wrapper {
+        margin-top: 0;
+        padding: 3rem;
+
+    }
+
+
+    .footer {
+        max-width: var(--desktop-max-w);
+        margin: 0 auto;
+    }
+
+
+
+    .blurb {
+        max-width: 500px;
+    }
+
+    .footer>* {
+        margin: 1rem;
+    }
+
+    .footer h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Email copy button */
+.email_copy_btn {
+    background-color: var(--white);
+    border: 1.5px solid var(--black);
+    padding: 0.5rem 1rem;
+    border-radius: 500px;
+}
+
+.email_copy_btn:hover {
+    background-color: var(--light-mode-blue);
+    font-weight: 600;
+}
+
+.email_copy_btn:focus,
+.email_copy_btn:active {
+    font-weight: 600;
+    box-shadow: 2px 2px 0px 2px var(--black), 0px 5px 15px 0px rgba(255, 255, 255, 0.2), 0px -5px 15px 0px rgba(255, 255, 255, 0.2);
+}
+
+
+.email_copy_btn.copied {
+    background-color: var(--light-mode-blue);
+}
+
+[data-theme='dark'] .email_copy_btn {
+    background-color: var(--dark-mode-bg);
+    color: var(--white);
+    border-color: var(--white);
+}
+
+[data-theme='dark'] .email_copy_btn:hover,
+[data-theme='dark'] .email_copy_btn.copied {
+    background-color: var(--dark-mode-yellow);
+    color: var(--black);
+}
+
+[data-theme='dark'] .email_copy_btn:focus,
+[data-theme='dark'] .email_copy_btn:active {
+    box-shadow: 2px 2px 0px 2px var(--white), 0px 5px 15px 0px rgba(255, 255, 255, 0.2), 0px -5px 15px 0px rgba(255, 255, 255, 0.2);
+}

@@ -305,6 +305,7 @@
     .featured_projects {
         max-width: var(--desktop-max-w);
         margin: 0 auto;
+        margin-bottom: var(--desktop-vertical-space);
     }
 
     .project_container {

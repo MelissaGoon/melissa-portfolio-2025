@@ -32,6 +32,11 @@
     :root {
         scroll-behavior: smooth;
     }
+
+    a,
+    button {
+        transition: all 0.3s;
+    }
 }
 
 ::selection {
@@ -102,7 +107,8 @@ h6 {
     background-color: var(--dark-mode-purple);
 }
 
-/* Buttons */
+/* Button Links */
+
 .button-link {
     border: 1.5px solid var(--black);
     text-decoration: none;

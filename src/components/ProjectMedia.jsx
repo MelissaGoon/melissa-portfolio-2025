@@ -16,6 +16,7 @@ const ProjectMedia = ({ projectData, figureStyle }) => {
                     autoPlay={noMotionPreference}
                     controls
                     aria-label={`Demo video for project: ${projectData.title.rendered}`}
+                    draggable="false"
                 />
             </figure>
         );
@@ -30,7 +31,7 @@ const ProjectMedia = ({ projectData, figureStyle }) => {
         return (
             <figure className={figureStyle}>
                 <img
-
+                    draggable="false"
                     src="assets/placeholder.png"
                     alt="Placeholder image: no media available for this project"
                 />

@@ -160,9 +160,9 @@
 
 .tablist button:not(.current):hover {
     background: var(--round-gradient);
-    background-size: 100px 100px;
+    background-size: 150px 150px;
     background-repeat: no-repeat;
-    background-position: right -50px top -50px;
+
 
 }
 

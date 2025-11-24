@@ -71,7 +71,7 @@ const HomePage = () => {
                     <p>{restData.acf.hero_blurb}</p>
                     <div className={styles.hero_links}>
                         <ButtonLink isInternal={true} link="/Projects" label="My Works ✦" color={theme === "dark" ? "color" : "plain"} />
-                        <GithubLink link="https://github.com/MelissaGoon" color={theme === "dark" ? "color" : "plain"} />
+                        <GithubLink srText="View my profile on Github" link="https://github.com/MelissaGoon" color={theme === "dark" ? "color" : "plain"} />
                     </div>
 
                     <a className={styles.down_arrow} href="#about-me" >

@@ -1,7 +1,7 @@
 .projects_page {
 
-    padding: var(--mobile-margin);
-    padding-top: var(--mobile-top-padding);
+    padding: var(--mobile-top-padding) var(--mobile-margin);
+
 
 }
 
@@ -29,6 +29,10 @@
     margin: 0.5rem 0;
     text-decoration: underline wavy var(--light-mode-pink);
 
+}
+
+[data-theme='dark'] .filter_container h1 {
+    text-decoration: underline wavy var(--dark-mode-purple);
 }
 
 @media (min-width:45em) {
@@ -192,6 +196,27 @@
 /* Project card */
 .empty {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.empty::after {
+    content: "";
+    background-image: url("/assets/flower-light.svg");
+    width: 185px;
+    height: 300px;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+[data-theme='dark'] .empty::after {
+    background-image: url("/assets/flower-dark.svg");
 }
 
 .project_card {
@@ -261,6 +286,11 @@
 }
 
 @media (min-width:45em) {
+
+    .empty {
+        padding: 2rem;
+        gap: 1rem;
+    }
 
     .project_card,
     [data-theme='dark'] .project_card {
