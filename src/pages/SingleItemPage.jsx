@@ -12,6 +12,7 @@ import Tabs from "../components/Tabs";
 import KeyContributionsContent from "../components/KeyContributionsContent";
 import InsightsContent from "../components/InsightsContent";
 import ScrollDrag from "../utilities/ScrollDrag";
+import { useIsMobile } from "../utilities/IsMobile";
 
 const SingleItemPage = () => {
     const { id } = useParams();
@@ -25,8 +26,7 @@ const SingleItemPage = () => {
     const [errorCode, setErrorCode] = useState(404);
 
     // Accessibility
-    const noMotionPreference = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
-
+    const isMobile = useIsMobile();
 
     // Fetch data
     useEffect(() => {
@@ -68,25 +68,39 @@ const SingleItemPage = () => {
 
     return (
         <main id="site-main" className={styles.main}>
-            <h1>{projData.title.rendered} ✦</h1>
-            <ul className={styles.chips}>
-                {projData._embedded['wp:term'][1].map((t) => (<li key={t.id} className="tech-chip purple">{t.name}</li>))}
-            </ul>
+            <div className={styles.page_top}>
+                <div className={styles.info}>
+                    <h1>{projData.title.rendered} ✦</h1>
+                    <ul className={styles.chips}>
+                        {projData._embedded['wp:term'][1].map((t) => (<li key={t.id} className="tech-chip purple">{t.name}</li>))}
+                    </ul>
 
-            <p className={styles.role}><strong>{projData._embedded['wp:term'][0].length > 1 ? "Roles" : "Role"}:</strong>      {(() => {
-                let roles_string = "";
-                projData._embedded['wp:term'][0].map((role) => roles_string += (role.name + ", "));
-                return roles_string.slice(0, -2);
-            })()}</p>
+                    <p className={styles.role}><strong>{projData._embedded['wp:term'][0].length > 1 ? "Roles" : "Role"}:</strong>      {(() => {
+                        let roles_string = "";
+                        projData._embedded['wp:term'][0].map((role) => roles_string += (role.name + ", "));
+                        return roles_string.slice(0, -2);
+                    })()}</p>
 
-            <ProjectMedia projectData={projData} noMotionPreference={noMotionPreference} figureStyle={styles.project_figure} />
+                    {
+                        !isMobile &&
+                        <section className={styles.overview}>
+                            <h2>Overview</h2>
+                            <p>{projData.acf.overview}</p>
+                        </section>
+                    }
+                </div>
 
 
+                <ProjectMedia projectData={projData} figureStyle={styles.project_figure} />
 
-            <section className={styles.overview}>
-                <h2>Overview</h2>
-                <p>{projData.acf.overview}</p>
-            </section>
+            </div >
+
+            {isMobile &&
+                <section className={styles.overview}>
+                    <h2>Overview</h2>
+                    <p>{projData.acf.overview}</p>
+                </section>}
+
 
             <div className={styles.button_container}>
                 {projData.acf?.github_link && <GithubLink link={projData.acf.github_link} color="color" />}
@@ -112,14 +126,15 @@ const SingleItemPage = () => {
 
 
                 return (
-                    <section>
+                    <section className={styles.tabs_section}>
                         <h2>{projData.acf.tabs_section_title}</h2>
                         <Tabs tabs={tabs} styles={styles} />
                     </section>)
             })()}
 
+            {!isMobile && <div className="divider"></div>}
 
-            <section>
+            <section className={styles.projects_section}>
                 <h2>More Projects</h2>
                 <ScrollDrag className={styles.project_container}>
 
@@ -131,7 +146,7 @@ const SingleItemPage = () => {
 
                             return (
                                 <article key={project.id} className={styles.project_card}>
-                                    <ProjectMedia projectData={project} noMotionPreference={noMotionPreference} figureStyle={styles.project_fig} />
+                                    <ProjectMedia projectData={project} figureStyle={styles.project_fig} />
 
                                     <div className={styles.card_content}>
                                         <h3>{project.title.rendered}</h3>

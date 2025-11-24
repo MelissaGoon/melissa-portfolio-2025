@@ -2,7 +2,6 @@
 const KeyContributionsContent = ({ acfContributionItem, className }) => {
     return (
         <div className={className}>
-            {console.log(acfContributionItem.contributions)}
             {acfContributionItem.contributions.length > 0 &&
                 acfContributionItem.contributions.map((item, index) => (
                     <section key={index}>

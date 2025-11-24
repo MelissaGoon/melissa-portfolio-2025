@@ -168,7 +168,7 @@ const ProjectsPage = () => {
                     <p>Projects Displayed: {currentProjects.length}</p>
                 </div>
 
-                <ScrollDrag className={styles.projects_container}>
+                <ScrollDrag className={styles.project_container}>
                     {
                         currentProjects.length > 0 &&
                         currentProjects.map((project) => (<ProjectCard key={project.id} project={project} styles={styles} buttonLabel="View Project →" buttonColor="color" buttonSize="small" />))

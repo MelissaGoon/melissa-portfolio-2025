@@ -2,8 +2,6 @@ import ProjectMedia from "./ProjectMedia";
 import ButtonLink from "./ButtonLink";
 
 const ProjectCard = ({ project, styles, buttonLabel, buttonColor = "plain", buttonSize = "regular" }) => {
-    const noMotionPreference = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
-
 
     const roles = project._embedded['wp:term'][0];
     let roles_string = "";
@@ -14,7 +12,7 @@ const ProjectCard = ({ project, styles, buttonLabel, buttonColor = "plain", butt
 
     return (
         <article key={project.id} className={styles.project_card}>
-            <ProjectMedia projectData={project} noMotionPreference={noMotionPreference} figureStyle={styles.project_fig} />
+            <ProjectMedia projectData={project} figureStyle={styles.project_fig} />
 
             <div className={styles.card_content}>
                 <h3>{project.title.rendered}</h3>

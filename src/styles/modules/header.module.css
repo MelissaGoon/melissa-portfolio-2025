@@ -207,6 +207,11 @@
 /* Desktop styles */
 
 @media (min-width: 45em) {
+
+    .header {
+        padding: 2rem;
+    }
+
     .menu_right {
         position: static;
     }
@@ -218,7 +223,7 @@
     .header ul {
         margin: 0;
         gap: 1rem;
-        width: 255px;
+        width: fit-content;
     }
 
 }

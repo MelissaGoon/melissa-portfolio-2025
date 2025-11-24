@@ -2,8 +2,8 @@ import FeaturedImage from "../utilities/FeaturedImage";
 // If there is a video, display it, else, display the featured image. 
 // If neither exists, display a placeholder
 
-const ProjectMedia = ({ projectData, noMotionPreference, figureStyle }) => {
-
+const ProjectMedia = ({ projectData, figureStyle }) => {
+    const noMotionPreference = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
     if (projectData.acf?.demo_video?.url) {
         return (
@@ -14,6 +14,7 @@ const ProjectMedia = ({ projectData, noMotionPreference, figureStyle }) => {
                     muted
                     playsInline
                     autoPlay={noMotionPreference}
+                    controls
                     aria-label={`Demo video for project: ${projectData.title.rendered}`}
                 />
             </figure>

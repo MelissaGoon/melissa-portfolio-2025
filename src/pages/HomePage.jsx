@@ -32,6 +32,7 @@ const HomePage = () => {
                 const data = await fetchData(restPath);
                 setData(data);
 
+
                 // Get featured project data
                 const featured_projects = data.acf.featured_projects;
                 const validProjects = await fetchProjects(featured_projects, true);
@@ -146,7 +147,7 @@ const HomePage = () => {
                     {
 
                         projects.map((project) => (
-                            <ProjectCard project={project} styles={styles} buttonLabel="✦ View Project ✦" />))
+                            <ProjectCard key={project.id} project={project} styles={styles} buttonLabel="✦ View Project ✦" />))
                     }
                 </div>
 

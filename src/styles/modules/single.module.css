@@ -1,6 +1,8 @@
 .main {
     padding: var(--mobile-margin);
     padding-top: var(--mobile-top-padding);
+    max-width: 1000px;
+    margin: 0 auto;
 
     --main-color: var(--light-mode-blue);
     --accent-color: var(--light-mode-pink);
@@ -15,13 +17,15 @@
     --round-gradient: radial-gradient(circle, rgba(76, 48, 161, 1) 0%, rgba(76, 48, 161, 0) 75%);
 }
 
-.main>* {
+.main>*,
+.info>* {
     margin: 1rem 0;
 }
 
 .main h1 {
     font-size: var(--xl-text);
     text-decoration: underline wavy var(--main-color);
+    margin-top: 0;
 }
 
 .main h2 {
@@ -50,7 +54,10 @@
 }
 
 .project_figure {
-
+    max-height: 300px;
+    max-width: 500px;
+    margin: 0 auto;
+    width: fit-content;
     border: solid 1.5px var(--black);
     overflow: hidden;
     border-radius: var(--rounded-border);
@@ -63,11 +70,58 @@
     object-fit: cover;
 }
 
-.overview {
-    /* background-color: var(--main-color); */
-    /* border: solid 1.5px var(--border-color);
-    padding: 0.5rem;
-    border-radius: var(--rounded-border); */
+@media (min-width: 45em) {
+    .main {
+        padding-top: var(--desktop-top-padding);
+        position: relative;
+    }
+
+
+    .main::before {
+        content: "";
+        background-image: url("/assets/vertical-thorns-light.svg");
+        height: 100%;
+        width: 75px;
+        background-repeat: repeat-y;
+        background-size: contain;
+        position: absolute;
+        top: 0;
+        left: -100px;
+    }
+
+    [data-theme='dark'] .main::before {
+        background-image: url("/assets/vertical-thorns-dark.svg");
+    }
+
+    .tabs_section {
+        margin: 2rem 0;
+    }
+
+    .page_top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .project_figure {
+        width: auto;
+        height: fit-content;
+        max-height: none;
+        max-width: none;
+        margin: 0;
+        justify-self: end;
+    }
+
+
+    .project_figure * {
+        height: auto;
+    }
+
+    .main h2 {
+        margin: 1.5rem 0;
+    }
+
+
 }
 
 
@@ -86,7 +140,7 @@
     border-radius: var(--rounded-border) var(--rounded-border) 0 0;
     border: solid 1.5px var(--border-color);
     border-bottom: none;
-    font-size: clamp(14px, 1.2vw, 18px);
+    font-size: clamp(0.875rem, 1.4vw, 1rem);
     padding: 0.2rem 0.75rem;
     color: var(--border-color);
 }
@@ -94,17 +148,17 @@
 .tablist button.current,
 .tablist button:focus,
 .tablist button:active {
-    background-color: var(--light-mode-pink);
+    background: var(--light-mode-pink);
 }
 
 [data-theme='dark'] .tablist button.current,
 [data-theme='dark'] .tablist button:focus,
 [data-theme='dark'] .tablist button:active {
-    background-color: var(--dark-mode-purple);
+    background: var(--dark-mode-purple);
 }
 
 
-.tablist button:hover {
+.tablist button:not(.current):hover {
     background: var(--round-gradient);
     background-size: 100px 100px;
     background-repeat: no-repeat;
@@ -127,11 +181,40 @@
     background-position: right -150px top -150px;
 }
 
+@media (min-width: 45em) {
+    .tablist button {
+        font-size: 1.15rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .tabs_content {
+        background: var(--round-gradient), var(--round-gradient);
+        background-size: 500px 500px;
+        background-repeat: no-repeat, no-repeat;
+        background-position: right -250px top -250px, left -250px bottom -250px;
+        padding: 2rem 3rem;
+    }
+
+    .tabs_content h3 {
+        font-size: 1.5rem;
+    }
+
+}
+
 
 /* More project cards */
-.projects_container {
+
+.projects_section h2 {
+    font-family: "Bai Jamjuree", sans-serif;
+    font-size: 1.75rem;
+    text-align: center;
+
+}
+
+.project_container {
     display: flex;
     flex-wrap: nowrap;
+    justify-content: center;
     overflow-x: auto;
     scrollbar-width: thin;
 
@@ -171,4 +254,25 @@
     align-items: center;
     gap: 0.25rem;
     background-color: var(--main-color);
+}
+
+@media (min-width: 45em) {
+    .projects_section {
+        padding: 2rem 0;
+    }
+
+    .projects_section h2 {
+        margin: 1rem 0;
+    }
+
+    .project_container {
+        display: flex;
+        flex-wrap: nowrap;
+        width: fit-content;
+        overflow-x: unset;
+        margin: 0 auto;
+
+        gap: 1rem;
+    }
+
 }
