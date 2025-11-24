@@ -139,7 +139,7 @@ const HomePage = () => {
             <div className="divider"></div>
 
             <section className={styles.featured_projects}>
-                <div className={styles.featured_heading}><h2>Featured Projects</h2>
+                <div className={styles.featured_heading}><h2>Featured Projects ✦</h2>
                     <ButtonLink color="color" label="See More →" isInternal={true} link='/projects' style={{ margin: 0 }} />
                 </div>
                 <div className={styles.project_container}>

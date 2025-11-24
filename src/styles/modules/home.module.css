@@ -283,6 +283,11 @@
 .featured_projects h2 {
     font-size: var(--lg-text);
     margin: 0;
+    text-decoration: underline wavy var(--light-mode-blue);
+}
+
+[data-theme='dark'] .featured_projects h2 {
+    text-decoration: underline wavy var(--dark-mode-purple);
 }
 
 .featured_heading {
