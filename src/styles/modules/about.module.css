@@ -179,7 +179,7 @@
 
 @media (min-width: 45em) {
     .about {
-        max-width: 1000px;
+        max-width: var(--desktop-max-w);
         margin: 0 auto;
         padding: var(--desktop-top-padding) 0;
     }
@@ -187,7 +187,7 @@
     .cards {
         display: grid;
         grid-template-columns: 2fr 1fr;
-        gap: 1rem;
+        gap: 2rem;
         padding: 2rem;
         align-items: flex-start;
         justify-content: center;
@@ -226,6 +226,10 @@
     .about_card {
         grid-column: 1/2;
         grid-row: 1/2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .skills_card {

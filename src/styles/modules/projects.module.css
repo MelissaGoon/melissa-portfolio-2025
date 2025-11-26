@@ -129,14 +129,12 @@
 .checkbox:has(input:focus),
 .checkbox:has(input:active) {
     font-weight: 600;
-    background-color: var(--light-mode-pink);
     border: 1.5px solid var(--black);
 }
 
 [data-theme='dark'] .checkbox:has(input:focus),
 [data-theme='dark'] .checkbox:has(input:active) {
     color: var(--black);
-    background-color: var(--dark-mode-yellow);
     border: 1.5px solid var(--white);
 }
 

@@ -88,11 +88,13 @@ const HomePage = () => {
             {/* Display one of 4 SVG artworks based on user preference */}
             <section className={styles.about}>
 
-                {noMotionPreference ?
-                    <img className={styles.me_svg} src={theme === "light" ? `${ASSETS_FOLDER_PATH}me-light-animated.svg` : `${ASSETS_FOLDER_PATH}me-dark-animated.svg`} alt="Animated SVG art of me working on a laptop while surrounded by flowers." />
-                    :
-                    <img className={styles.me_svg} src={theme === "light" ? `${ASSETS_FOLDER_PATH}me-light.svg` : `${ASSETS_FOLDER_PATH}me-dark.svg`} alt="SVG art of me working on a laptop while surrounded by flowers." />
-                }
+                <div className={styles.me_container}>
+                    {noMotionPreference ?
+                        <img className={styles.me_svg} src={theme === "light" ? `${ASSETS_FOLDER_PATH}me-light-animated.svg` : `${ASSETS_FOLDER_PATH}me-dark-animated.svg`} alt="Animated SVG art of me working on a laptop while surrounded by flowers." />
+                        :
+                        <img className={styles.me_svg} src={theme === "light" ? `${ASSETS_FOLDER_PATH}me-light.svg` : `${ASSETS_FOLDER_PATH}me-dark.svg`} alt="SVG art of me working on a laptop while surrounded by flowers." />
+                    }
+                </div>
 
                 <div className={styles.about_me}>
                     <div className={styles.about_top}>

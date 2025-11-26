@@ -150,10 +150,14 @@
 
 /* About */
 
+.me_container {
+    margin: 0 auto;
+}
+
 .me_svg {
     max-width: 500px;
-    display: block;
     margin: 0 auto;
+    display: block;
 }
 
 .about_me {
@@ -245,7 +249,8 @@
         margin: 0;
     }
 
-    .me_svg {
+    .me_container {
+        width: 500px;
         margin: 0 1rem;
     }
 
