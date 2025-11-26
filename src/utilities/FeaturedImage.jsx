@@ -20,6 +20,7 @@ const FeaturedImage = ({ featuredImageObject, className }) => {
                 ${featuredImageObject.media_details.sizes.medium ? featuredImageObject.media_details.sizes.medium.source_url + ' 300w' : ''}`}
                 sizes={`(max-width: ${imgWidth}) 100vw, ${imgWidth}px`}
                 draggable="false"
+                loading="lazy"
             />
         </figure>
     )

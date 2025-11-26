@@ -18,6 +18,7 @@ const ACFImage = ({ acfImageObject, acfImageSize }) => {
                         width={acfImageObject.sizes[`${size}-width`]}
                         height={acfImageObject.sizes[`${size}-height`]}
                         alt={acfImageObject.alt}
+                        loading="lazy"
                     />
                 </figure>
                 :
@@ -32,6 +33,7 @@ const ACFImage = ({ acfImageObject, acfImageSize }) => {
                             ${acfImageObject.sizes.large ? acfImageObject.sizes.large + ' ' + acfImageObject.sizes['large-width'] + 'w,' : ''}
                             ${acfImageObject.sizes.medium_large ? acfImageObject.sizes.medium_large + ' ' + acfImageObject.sizes['medium_large-width'] + 'w,' : ''}
                         `}
+                        loading="lazy"
                     />
                 </figure>
             }

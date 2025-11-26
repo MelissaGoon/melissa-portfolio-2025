@@ -55,6 +55,7 @@
         background-repeat: repeat-y;
         background-size: contain;
         position: absolute;
+        top: -10px;
         left: -75px;
     }
 

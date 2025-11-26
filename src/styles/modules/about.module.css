@@ -1,0 +1,237 @@
+.about {
+    padding: var(--mobile-margin);
+    padding-top: var(--mobile-top-padding);
+
+}
+
+.about h1 {
+    text-align: center;
+    font-size: var(--lg-text);
+    text-decoration: wavy underline var(--light-mode-pink);
+}
+
+[data-theme='dark'] .about h1 {
+    text-decoration: wavy underline var(--dark-mode-purple);
+}
+
+.cards {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    padding: 1rem;
+    border: 1.5px solid var(--black);
+    background-color: var(--light-mode-blue);
+    border-radius: 20px;
+    max-width: 400px;
+
+}
+
+[data-theme='dark'] .card {
+    background-color: var(--dark-mode-purple);
+}
+
+.card h2 {
+    text-decoration: wavy underline var(--white);
+    margin: var(--mobile-margin) 0;
+    font-size: var(--md-text);
+}
+
+
+[data-theme='dark'] .card h2 {
+    color: var(--white);
+    text-decoration: wavy underline var(--dark-mode-yellow);
+}
+
+.card h3 {
+    font-family: "Bai Jamjuree", sans-serif;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* Skills card */
+.skills_card p {
+    margin: 0.25rem 0;
+}
+
+.chips_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+.chip {
+    list-style: none;
+    display: flex;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--light-mode-pink);
+    width: fit-content;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 500px;
+}
+
+[data-theme='dark'] .chip {
+    background-color: var(--dark-mode-yellow);
+    color: var(--black);
+}
+
+.chip p {
+    margin: 0;
+}
+
+.chip img {
+    height: 16px;
+    width: auto;
+}
+
+/* Profile card */
+
+.profile_image {
+    background-color: var(--white);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px, rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 375px;
+    margin: var(--mobile-margin);
+    transform: rotate(2deg);
+}
+
+[data-theme='dark'] .profile_image {
+    background-color: rgb(233, 217, 255);
+    box-shadow: rgba(149, 0, 255, 0.3) 0px 1px 2px 0px, rgba(140, 0, 255, 0.15) 0px 2px 6px 2px, rgba(200, 0, 255, 0.12) 0px 1px 3px, rgba(183, 0, 255, 0.24) 0px 1px 2px;
+}
+
+.profile_image figure {
+    margin: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile_image figure::before {
+    content: '';
+    box-shadow: rgba(50, 50, 93, 0.5) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.5) 0px 18px 36px -18px inset;
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.profile_image::after {
+    content: '';
+    background-image: url("/assets/polaroid-text.svg");
+    display: block;
+    width: 80%;
+    aspect-ratio: 250 / 65;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 1rem;
+
+}
+
+.profile_image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+}
+
+/* Hobbies */
+
+.hobbies_card {
+    aspect-ratio: 5/7;
+    background-image: url("/assets/hobbies-mbg-light.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1.5rem, 10vw, 2.25rem);
+
+    text-align: center;
+}
+
+.hobbies_card h2 {
+    font-size: clamp(1.5rem, 8vw, 2.25rem);
+    margin-bottom: 0.5rem;
+}
+
+.hobbies_card h2,
+.hobbies_card p {
+    margin: 0.25rem 0;
+}
+
+[data-theme='dark'] .hobbies_card {
+    background-image: url("/assets/hobbies-mbg-dark.png");
+
+}
+
+@media (min-width: 45em) {
+    .about {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: var(--desktop-top-padding) 0;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1rem;
+        padding: 2rem;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .card:not(.hobbies_card) {
+        max-width: none;
+        padding: 1.5rem;
+    }
+
+
+    .hobbies_card {
+        width: 400px;
+        height: 560px;
+    }
+
+    .about_card {
+        grid-column: 1/3;
+        grid-row: 1/2;
+    }
+
+    .skills_card {
+        grid-column: 1/3;
+        grid-row: 2/3;
+    }
+
+    .skill_item {
+        padding: 1rem 0;
+    }
+
+}
+
+
+@media (min-width: 54rem) {
+
+    .about_card {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
+    .skills_card {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+
+
+}
