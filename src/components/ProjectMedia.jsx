@@ -15,9 +15,10 @@ const ProjectMedia = ({ projectData, figureStyle }) => {
                     playsInline
                     autoPlay={noMotionPreference}
                     controls
-                    aria-label={`Demo video for project: ${projectData.title.rendered}`}
+                    aria-label={projectData.acf.demo_video.description}
                     draggable="false"
                 />
+                <figcaption className="screen-reader-text">{`Demo video for project: ${projectData.title.rendered}`}</figcaption>
             </figure>
         );
     } else if (projectData.featured_media !== 0 && projectData._embedded) {
@@ -35,6 +36,7 @@ const ProjectMedia = ({ projectData, figureStyle }) => {
                     src="assets/placeholder.png"
                     alt="Placeholder image: no media available for this project"
                 />
+                <figcaption className="screen-reader-text">Placeholder Image</figcaption>
             </figure>
         );
     }

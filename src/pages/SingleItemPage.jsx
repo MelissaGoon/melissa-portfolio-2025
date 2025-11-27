@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { REST_BASE } from "../utilities/GlobalVariables";
+import { REST_BASE, APP_SUFFIX } from "../utilities/GlobalVariables";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 import { fetchProjects, fetchData } from "../utilities/GlobalUtils"
@@ -40,6 +40,7 @@ const SingleItemPage = () => {
                 const validProjects = await fetchProjects(related_project_ids, false);
                 setMoreProjects(validProjects);
 
+                document.title = `${data.title.rendered} ${APP_SUFFIX}`;
                 setIsLoaded(true);
             } catch (err) {
                 setIsLoaded(true);

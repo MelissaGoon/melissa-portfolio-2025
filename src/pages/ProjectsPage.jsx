@@ -1,5 +1,5 @@
 import { fetchData } from "../utilities/GlobalUtils";
-import { REST_BASE } from "../utilities/GlobalVariables";
+import { REST_BASE, APP_SUFFIX } from "../utilities/GlobalVariables";
 import { useState, useEffect } from "react";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
@@ -24,6 +24,7 @@ const ProjectsPage = () => {
 
 
     useEffect(() => {
+        document.title = `Projects ${APP_SUFFIX}`;
         const loadData = async () => {
             try {
                 const data = await fetchData(restPath);

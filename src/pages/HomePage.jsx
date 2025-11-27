@@ -1,4 +1,4 @@
-import { REST_BASE } from "../utilities/GlobalVariables"
+import { APP_SUFFIX, REST_BASE } from "../utilities/GlobalVariables"
 import { useState, useEffect } from "react"
 import LoadingPage from "./LoadingPage"
 import styles from '../styles/modules/home.module.css'
@@ -27,6 +27,7 @@ const HomePage = () => {
 
     // Fetch data
     useEffect(() => {
+        document.title = `Home ${APP_SUFFIX}`;
         const loadData = async () => {
             try {
                 const data = await fetchData(restPath);
@@ -85,9 +86,10 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* Display one of 4 SVG artworks based on user preference */}
+
             <section className={styles.about}>
 
+                {/* Display one of 4 SVG artworks based on user preference */}
                 <div className={styles.me_container}>
                     {noMotionPreference ?
                         <img className={styles.me_svg} src={theme === "light" ? `${ASSETS_FOLDER_PATH}me-light-animated.svg` : `${ASSETS_FOLDER_PATH}me-dark-animated.svg`} alt="Animated SVG art of me working on a laptop while surrounded by flowers." />

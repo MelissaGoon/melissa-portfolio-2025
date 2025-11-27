@@ -22,6 +22,7 @@ const FeaturedImage = ({ featuredImageObject, className }) => {
                 draggable="false"
                 loading="lazy"
             />
+            <figcaption className="screen-reader-text">Featured image for this project.</figcaption>
         </figure>
     )
 

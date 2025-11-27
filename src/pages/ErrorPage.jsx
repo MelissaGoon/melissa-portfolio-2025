@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
-
+import { APP_SUFFIX } from "../utilities/GlobalVariables";
 import ButtonLink from "../components/ButtonLink";
+import { useEffect } from "react";
 
 const ErrorPage = ({ errorCode }) => {
+    useEffect(() => { document.title = `Error ${APP_SUFFIX}`; });
+
     if (errorCode === 404) {
         return (
             <main className="error-page" id="site-main">

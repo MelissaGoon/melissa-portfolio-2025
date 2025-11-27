@@ -1,6 +1,6 @@
 import styles from '../styles/modules/about.module.css'
 import { fetchData } from '../utilities/GlobalUtils';
-import { REST_BASE } from '../utilities/GlobalVariables';
+import { REST_BASE, APP_SUFFIX } from '../utilities/GlobalVariables';
 import { useEffect, useState } from 'react';
 import LoadingPage from './LoadingPage';
 import ErrorPage from './ErrorPage';
@@ -20,6 +20,7 @@ const AboutPage = () => {
 
     // Fetch data
     useEffect(() => {
+        document.title = `About ${APP_SUFFIX}`;
         const loadData = async () => {
             try {
                 const data = await fetchData(restPath);
