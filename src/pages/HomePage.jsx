@@ -135,7 +135,7 @@ const HomePage = () => {
                     </div>
 
 
-                    <ButtonLink color="color" label="More About Me →" isInternal="true" link="/about-me" style={{ alignSelf: 'start' }} />
+                    <ButtonLink color="color" label="More About Me →" isInternal="true" link="/about" style={{ alignSelf: 'start' }} />
 
                 </div>
             </section>

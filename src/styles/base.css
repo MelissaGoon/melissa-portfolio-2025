@@ -62,7 +62,9 @@ body {
     font-family: "Bai Jamjuree", sans-serif;
     color: var(--black);
     background-color: var(--white);
+    text-underline-offset: 4px;
 }
+
 
 [data-theme='dark'] body {
     color: var(--white);
@@ -70,6 +72,10 @@ body {
 }
 
 @media (min-width: 45em) {
+    body {
+        text-underline-offset: 4px;
+    }
+
     p {
         font-size: 1.125rem;
         line-height: 1.75rem;
