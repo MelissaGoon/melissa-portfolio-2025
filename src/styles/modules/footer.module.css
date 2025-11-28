@@ -53,7 +53,7 @@
 .social_links svg {
     height: 35px;
     width: auto;
-    object-position: cover;
+    object-fit: cover;
     object-position: center;
 }
 
