@@ -165,7 +165,7 @@ const ProjectsPage = () => {
 
             <div className={styles.content_container}>
 
-                <div className="screen-reader-text" aria-live='polite' role='region'>
+                <div className="screen-reader-text" aria-live='polite' role='region' aria-atomic="true">
                     <p>Projects Displayed: {currentProjects.length}</p>
                 </div>
 
