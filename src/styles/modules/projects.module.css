@@ -149,7 +149,7 @@
 }
 
 .checkbox:has(input:checked) label::before {
-    content: "🞶 ";
+    content: "✶ ";
 }
 
 @media (min-width:45em) {
