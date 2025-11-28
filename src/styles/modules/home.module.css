@@ -156,6 +156,7 @@
 }
 
 .me_svg {
+    width: 90vw;
     max-width: 500px;
     margin: 0 auto;
     display: block;
