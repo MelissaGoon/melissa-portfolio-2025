@@ -54,52 +54,54 @@ const AboutPage = () => {
     }
 
     return (
-        <main id='site-main' className={styles.about}>
-            <h1>About Me</h1>
+        <main id='site-main' className={styles.about_main}>
+            <div className={styles.about}>
+                <h1>✦ About Me ✦</h1>
 
-            <div className={styles.cards}>
+                <div className={styles.cards}>
 
-                <div className={styles.profile_image}>
-                    <ACFImage acfImageObject={restData.profile_image} />
+                    <div className={styles.profile_image}>
+                        <ACFImage acfImageObject={restData.profile_image} />
 
+                    </div>
+
+                    <article className={`${styles.about_card} ${styles.card}`}>
+                        <h2>{restData.about_card?.about_me_title}</h2>
+                        <div dangerouslySetInnerHTML={{ __html: restData.about_card?.about_me_content }}></div>
+                    </article>
+
+                    <article className={`${styles.skills_card} ${styles.card}`}>
+                        <h2>{restData.skills_card?.skills_card_title}</h2>
+                        {
+                            restData.skills_card?.skill_items.map((item, index) => (
+                                <section key={index} className={styles.skill_item}>
+                                    <h3>{item.skill_title}</h3>
+                                    <p>{item.skill_description}</p>
+
+                                    <ul className={styles.chips_container}>
+                                        {
+                                            item.skill_chips.map((skill, i) => (
+                                                <li className={styles.chip} key={i}>
+
+                                                    {skill.skill_icon &&
+                                                        <img src={skill.skill_icon} alt={`Logo for ${skill.skill_name}`} />
+                                                    }
+
+                                                    <p>{skill.skill_name}</p>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
+                                </section>
+                            ))
+                        }
+                    </article>
+
+                    <article className={`${styles.hobbies_card} ${styles.card}`}>
+                        <h2>{restData.personal_interests_card?.personal_interests_title}</h2>
+                        <div dangerouslySetInnerHTML={{ __html: restData.personal_interests_card?.personal_interests_content }}></div>
+                    </article>
                 </div>
-
-                <article className={`${styles.about_card} ${styles.card}`}>
-                    <h2>{restData.about_card?.about_me_title}</h2>
-                    <div dangerouslySetInnerHTML={{ __html: restData.about_card?.about_me_content }}></div>
-                </article>
-
-                <article className={`${styles.skills_card} ${styles.card}`}>
-                    <h2>{restData.skills_card?.skills_card_title}</h2>
-                    {
-                        restData.skills_card?.skill_items.map((item, index) => (
-                            <section key={index} className={styles.skill_item}>
-                                <h3>{item.skill_title}</h3>
-                                <p>{item.skill_description}</p>
-
-                                <ul className={styles.chips_container}>
-                                    {
-                                        item.skill_chips.map((skill, i) => (
-                                            <li className={styles.chip} key={i}>
-
-                                                {skill.skill_icon &&
-                                                    <img src={skill.skill_icon} alt={`Logo for ${skill.skill_name}`} />
-                                                }
-
-                                                <p>{skill.skill_name}</p>
-                                            </li>
-                                        ))
-                                    }
-                                </ul>
-                            </section>
-                        ))
-                    }
-                </article>
-
-                <article className={`${styles.hobbies_card} ${styles.card}`}>
-                    <h2>{restData.personal_interests_card?.personal_interests_title}</h2>
-                    <div dangerouslySetInnerHTML={{ __html: restData.personal_interests_card?.personal_interests_content }}></div>
-                </article>
             </div>
         </main>
     )

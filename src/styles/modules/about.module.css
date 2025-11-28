@@ -14,6 +14,36 @@
     text-decoration: wavy underline var(--dark-mode-purple);
 }
 
+.about_main {
+    position: relative;
+}
+
+.about_main::before,
+.about_main::after {
+    content: '';
+    background-image: url('/assets/about-corner-light.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 40%;
+    max-width: 31.25rem;
+    aspect-ratio: 355/420;
+    position: absolute;
+    z-index: -1;
+}
+
+.about_main::after {
+    transform: scaleX(-1);
+    top: 0;
+    right: 0;
+}
+
+[data-theme='dark'] .about_main::before,
+[data-theme='dark'] .about_main::after {
+    background-image: url('/assets/about-corner-dark.svg');
+}
+
+/* Cards */
+
 .cards {
     display: flex;
     gap: 1rem;
@@ -90,7 +120,7 @@
     width: auto;
 }
 
-/* Profile card */
+/* Profile Image card */
 
 .profile_image {
     background-color: var(--white);
@@ -227,9 +257,6 @@
         grid-column: 1/2;
         grid-row: 1/2;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 
     .skills_card {
