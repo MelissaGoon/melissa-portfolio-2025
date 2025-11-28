@@ -305,7 +305,7 @@
 .project_container {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: var(--mobile-margin);
     padding: var(--mobile-vertical-space) 0;
@@ -319,6 +319,7 @@
     }
 
     .project_container {
+        align-items: center;
         flex-wrap: nowrap;
         flex-direction: column;
         gap: 1rem;
@@ -406,6 +407,7 @@
 .card_content li {
     list-style: none;
 }
+
 
 .proj_tagline {
     margin: 0.75rem var(--mobile-margin);

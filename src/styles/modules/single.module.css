@@ -227,6 +227,7 @@
     flex-direction: column;
     background-color: var(--main-color);
     flex: 0 0 auto;
+    position: relative;
 }
 
 
