@@ -73,7 +73,7 @@ body {
 
 @media (min-width: 45em) {
     body {
-        text-underline-offset: 4px;
+        text-underline-offset: 8px;
     }
 
     p {
